@@ -12,9 +12,13 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++14" />
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+					<Add option="-static" />
 					<Add library="sfml-graphics-d" />
 					<Add library="sfml-audio-d" />
 					<Add library="sfml-network-d" />
@@ -29,9 +33,13 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-std=c++14" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+					<Add option="-static" />
 					<Add library="sfml-graphics" />
 					<Add library="sfml-audio" />
 					<Add library="sfml-network" />
@@ -44,10 +52,10 @@
 			<Add option="-Wall" />
 			<Add option="-std=c++14" />
 			<Add option="-fexceptions" />
-			<Add directory="C:/Users/Tang/Desktop/ComPro/library/SFML-2.5.1/include" />
+			<Add directory="../SFML-2.5.1-windows-gcc-5.1.0-tdm-32-bit/SFML-2.5.1/include" />
 		</Compiler>
 		<Linker>
-			<Add directory="C:/Users/Tang/Desktop/ComPro/library/SFML-2.5.1/lib" />
+			<Add directory="../SFML-2.5.1-windows-gcc-5.1.0-tdm-32-bit/SFML-2.5.1/lib" />
 		</Linker>
 		<Unit filename="func.cpp" />
 		<Unit filename="func.h" />
