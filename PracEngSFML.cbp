@@ -14,16 +14,15 @@
 				<Compiler>
 					<Add option="-std=c++14" />
 					<Add option="-g" />
+					<Add directory="../SFML-2.5.1-windows-gcc-5.1.0-tdm-32-bit/SFML-2.5.1/include" />
 				</Compiler>
 				<Linker>
-					<Add option="-static-libstdc++" />
-					<Add option="-static-libgcc" />
-					<Add option="-static" />
 					<Add library="sfml-graphics-d" />
 					<Add library="sfml-audio-d" />
 					<Add library="sfml-network-d" />
 					<Add library="sfml-window-d" />
 					<Add library="sfml-system-d" />
+					<Add directory="../SFML-2.5.1-windows-gcc-5.1.0-tdm-32-bit/SFML-2.5.1/lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -37,9 +36,6 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add option="-static-libstdc++" />
-					<Add option="-static-libgcc" />
-					<Add option="-static" />
 					<Add library="sfml-graphics" />
 					<Add library="sfml-audio" />
 					<Add library="sfml-network" />
