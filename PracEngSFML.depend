@@ -424,12 +424,12 @@
 1584780956 source:c:\users\user\desktop\projectpraceng\func.cpp
 	"func.h"
 
-1584780956 c:\users\user\desktop\projectpraceng\func.h
+1584790585 c:\users\user\desktop\projectpraceng\func.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<vector>
 
-1584780956 source:c:\users\user\desktop\projectpraceng\main.cpp
+1584791240 source:c:\users\user\desktop\projectpraceng\main.cpp
 	"func.h"
 
 1525812018 c:\users\user\desktop\sfml-2.5.1-windows-gcc-5.1.0-tdm-32-bit\sfml-2.5.1\include\sfml\graphics.hpp

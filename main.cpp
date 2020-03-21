@@ -8,9 +8,15 @@ int main()
     RenderWindow window(VideoMode(w_width, w_height), "English Easy",Style::Close);
 
     //create button and set position
-    Bton A(100,50,200,325);
-    RectangleShape bton(Vector2f(A.Lx,A.Ly));
-    bton.setPosition(A.posx,A.posy);
+    Bton A(350,70,76,275);
+    Bton B(350,70,76,400);
+    Bton C(350,70,76,525);
+    RectangleShape btonA(Vector2f(A.Lx,A.Ly));
+    btonA.setPosition(A.posx,A.posy);
+    RectangleShape btonB(Vector2f(B.Lx,B.Ly));
+    btonB.setPosition(B.posx,B.posy);
+    RectangleShape btonC(Vector2f(C.Lx,C.Ly));
+    btonC.setPosition(C.posx,C.posy);
 
     while (window.isOpen())
     {
@@ -22,7 +28,9 @@ int main()
         }
 
         window.clear();
-        window.draw(bton);
+        window.draw(btonA);
+        window.draw(btonB);
+        window.draw(btonC);
         window.display();
     }
 

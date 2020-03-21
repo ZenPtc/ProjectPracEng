@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include<vector>
+#include <vector>
 using namespace std;
 
 struct Bton{
