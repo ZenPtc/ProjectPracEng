@@ -3,18 +3,24 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include<vector>
+#include <vector>
+#include <chrono>
+#include <thread>
 using namespace std;
 using namespace sf;
+using namespace std::this_thread;     // sleep_for, sleep_until
+using namespace std::chrono_literals; // ns, us, ms, s, h, etc.
 
 struct Bton{
     //data members
+    RectangleShape rectan;
     float Lx; //length x of button
     float Ly; //length y of button
     float posx; //position of x of button
     float posy; //position of y of button
+
     //member functions
-    Bton(float,float,float,float);
+    Bton(RectangleShape,float,float,float,float);
 };
 
 #endif // FUNC_H_INCLUDED

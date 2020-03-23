@@ -18,165 +18,146 @@ int main()
         }
         ///////////////////////////////////////////////////
         Vector2i mousePos = Mouse::getPosition(window);
+        //create button
+        RectangleShape btonA,btonB,btonC,btonBack,btonT,btonF,btonchoice1,btonchoice2;
+        Bton A(btonA,350,70,w_width/2,310);
+        Bton B(btonB,350,70,w_width/2,A.posy+125);
+        Bton C(btonC,350,70,w_width/2,B.posy+125);
+        Bton Back(btonBack,100,40,80,50);
+        Bton T(btonT,70,50,w_width/4,600);
+        Bton F(btonF,70,50,w_width/2+w_width/4,600);
+        Bton choice1(btonchoice1,170,50,w_width/3,600);
+        Bton choice2(btonchoice2,170,50,w_width/3+170,600);
+
         if(screen==0){ //main screen
-            Bton A(350,70,w_width/2,310);
-            Bton B(350,70,w_width/2,A.posy+125);
-            Bton C(350,70,w_width/2,B.posy+125);
-            RectangleShape btonA(Vector2f(A.Lx,A.Ly));
-            RectangleShape btonB(Vector2f(B.Lx,B.Ly));
-            RectangleShape btonC(Vector2f(C.Lx,C.Ly));
-            btonA.setOrigin(A.Lx/2,A.Ly/2);
-            btonB.setOrigin(B.Lx/2,B.Ly/2);
-            btonC.setOrigin(C.Lx/2,C.Ly/2);
-            btonA.setPosition(A.posx,A.posy);
-            btonB.setPosition(B.posx,B.posy);
-            btonC.setPosition(C.posx,C.posy);
 
             //Press word
             if((float)mousePos.x<A.posx+(A.Lx/2) && (float)mousePos.x>A.posx-(A.Lx/2)){
                 if((float)mousePos.y<A.posy+(A.Ly/2) && (float)mousePos.y>A.posy-(A.Ly/2)){
-                    btonA.setFillColor(Color::Green);
+                    A.rectan.setFillColor(Color::Green);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 1;
+                        sleep_for(150ms);
                     }
                 }
             }
             //Press learn
             if((float)mousePos.x<B.posx+(B.Lx/2) && (float)mousePos.x>B.posx-(B.Lx/2)){
                 if((float)mousePos.y<B.posy+(B.Ly/2) && (float)mousePos.y>B.posy-(B.Ly/2)){
-                    btonB.setFillColor(Color::Green);
+                    B.rectan.setFillColor(Color::Green);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 2;
+                        sleep_for(150ms);
                     }
                 }
             }
             //Press play
             if((float)mousePos.x<C.posx+(C.Lx/2) && (float)mousePos.x>C.posx-(C.Lx/2)){
                 if((float)mousePos.y<C.posy+(C.Ly/2) && (float)mousePos.y>C.posy-(C.Ly/2)){
-                    btonC.setFillColor(Color::Green);
+                    C.rectan.setFillColor(Color::Green);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 3;
+                        sleep_for(150ms);
                     }
                 }
             }
 
             window.clear();
-            window.draw(btonA);
-            window.draw(btonB);
-            window.draw(btonC);
+            window.draw(A.rectan);
+            window.draw(B.rectan);
+            window.draw(C.rectan);
             window.display();
         }else if(screen==1){ //word screen
-            Bton Back(100,40,80,50);
-            RectangleShape btonBack(Vector2f(Back.Lx,Back.Ly));
-            btonBack.setOrigin(Back.Lx/2,Back.Ly/2);
-            btonBack.setPosition(Back.posx,Back.posy);
 
             //Press back
             if((float)mousePos.x<Back.posx+(Back.Lx/2) && (float)mousePos.x>Back.posx-(Back.Lx/2)){
                 if((float)mousePos.y<Back.posy+(Back.Ly/2) && (float)mousePos.y>Back.posy-(Back.Ly/2)){
-                    btonBack.setFillColor(Color::Green);
+                    Back.rectan.setFillColor(Color::Green);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 0;
+                        sleep_for(150ms);
                     }
                 }
             }
 
             window.clear();
-            window.draw(btonBack);
+            window.draw(Back.rectan);
             window.display();
-        }else if(screen==2){ //card screen
-            Bton Back(100,40,80,50);
-            Bton T(70,50,w_width/4,600);
-            Bton F(70,50,w_width/2+w_width/4,600);
-            RectangleShape btonBack(Vector2f(Back.Lx,Back.Ly));
-            RectangleShape btonT(Vector2f(T.Lx,T.Ly));
-            RectangleShape btonF(Vector2f(F.Lx,F.Ly));
-            btonBack.setOrigin(Back.Lx/2,Back.Ly/2);
-            btonT.setOrigin(T.Lx/2,T.Ly/2);
-            btonF.setOrigin(F.Lx/2,F.Ly/2);
-            btonBack.setPosition(Back.posx,Back.posy);
-            btonT.setPosition(T.posx,T.posy);
-            btonF.setPosition(F.posx,F.posy);
+        }else if(screen==2){ //learn screen
 
             //Press back
             if((float)mousePos.x<Back.posx+(Back.Lx/2) && (float)mousePos.x>Back.posx-(Back.Lx/2)){
                 if((float)mousePos.y<Back.posy+(Back.Ly/2) && (float)mousePos.y>Back.posy-(Back.Ly/2)){
-                    btonBack.setFillColor(Color::Green);
+                    Back.rectan.setFillColor(Color::Green);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 0;
+                        sleep_for(150ms);
                     }
                 }
             }
             //Press Known
             if((float)mousePos.x<T.posx+(T.Lx/2) && (float)mousePos.x>T.posx-(T.Lx/2)){
                 if((float)mousePos.y<T.posy+(T.Ly/2) && (float)mousePos.y>T.posy-(T.Ly/2)){
-                    btonT.setFillColor(Color::Green);
+                    T.rectan.setFillColor(Color::Green);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 1;
+                        sleep_for(150ms);
                     }
                 }
             }
             //Press Don't know
             if((float)mousePos.x<F.posx+(F.Lx/2) && (float)mousePos.x>F.posx-(F.Lx/2)){
                 if((float)mousePos.y<F.posy+(F.Ly/2) && (float)mousePos.y>F.posy-(F.Ly/2)){
-                    btonF.setFillColor(Color::Green);
+                    F.rectan.setFillColor(Color::Green);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 1;
+                        sleep_for(150ms);
                     }
                 }
             }
 
             window.clear();
-            window.draw(btonBack);
-            window.draw(btonT);
-            window.draw(btonF);
+            window.draw(Back.rectan);
+            window.draw(T.rectan);
+            window.draw(F.rectan);
             window.display();
         }else if(screen==3){ //play screen
-            Bton Back(100,40,80,50);
-            Bton choice1(170,50,w_width/3,600);
-            Bton choice2(170,50,w_width/3+170,600);
-            RectangleShape btonBack(Vector2f(Back.Lx,Back.Ly));
-            RectangleShape btonchoice1(Vector2f(choice1.Lx,choice1.Ly));
-            RectangleShape btonchoice2(Vector2f(choice2.Lx,choice2.Ly));
-            btonBack.setOrigin(Back.Lx/2,Back.Ly/2);
-            btonchoice1.setOrigin(choice1.Lx/2,choice1.Ly/2);
-            btonchoice2.setOrigin(choice2.Lx/2,choice2.Ly/2);
-            btonBack.setPosition(Back.posx,Back.posy);
-            btonchoice1.setPosition(choice1.posx,choice1.posy);
-            btonchoice2.setPosition(choice2.posx,choice2.posy);
 
             //Press back
             if((float)mousePos.x<Back.posx+(Back.Lx/2) && (float)mousePos.x>Back.posx-(Back.Lx/2)){
                 if((float)mousePos.y<Back.posy+(Back.Ly/2) && (float)mousePos.y>Back.posy-(Back.Ly/2)){
-                    btonBack.setFillColor(Color::Green);
+                    Back.rectan.setFillColor(Color::Green);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 0;
+                        sleep_for(150ms);
                     }
                 }
             }
             //Press choice1
             if((float)mousePos.x<choice1.posx+(choice1.Lx/2) && (float)mousePos.x>choice1.posx-(choice1.Lx/2)){
                 if((float)mousePos.y<choice1.posy+(choice1.Ly/2) && (float)mousePos.y>choice1.posy-(choice1.Ly/2)){
-                    btonchoice1.setFillColor(Color::Green);
+                    choice1.rectan.setFillColor(Color::Green);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 1;
+                        sleep_for(150ms);
                     }
                 }
             }
             //Press choice2
             if((float)mousePos.x<choice2.posx+(choice2.Lx/2) && (float)mousePos.x>choice2.posx-(choice2.Lx/2)){
                 if((float)mousePos.y<choice2.posy+(choice2.Ly/2) && (float)mousePos.y>choice2.posy-(choice2.Ly/2)){
-                    btonchoice2.setFillColor(Color::Green);
+                    choice2.rectan.setFillColor(Color::Green);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 1;
+                        sleep_for(150ms);
                     }
                 }
             }
 
             window.clear();
-            window.draw(btonBack);
-            window.draw(btonchoice1);
-            window.draw(btonchoice2);
+            window.draw(Back.rectan);
+            window.draw(choice1.rectan);
+            window.draw(choice2.rectan);
             window.display();
         }
     }
