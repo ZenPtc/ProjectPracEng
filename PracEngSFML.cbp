@@ -56,6 +56,8 @@
 		<Unit filename="func.cpp" />
 		<Unit filename="func.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="page2.cpp" />
+		<Unit filename="page3.cpp" />
 		<Unit filename="sfml-audio-2.dll" />
 		<Unit filename="sfml-audio-d-2.dll" />
 		<Unit filename="sfml-graphics-2.dll" />
