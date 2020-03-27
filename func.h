@@ -10,6 +10,9 @@
 #include <thread>
 #include <fstream>
 #include <stdlib.h>
+#include <ctime>
+#include <cstdlib>
+#include <mutex>
 using namespace std;
 using namespace sf;
 using namespace std::this_thread;     // sleep_for, sleep_until

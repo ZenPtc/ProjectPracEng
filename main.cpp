@@ -10,9 +10,11 @@ int main()
     vector<string> word;
     vector<string> des;
     int count=0; //count word
+    int ranNUM=0;
 
     while (window.isOpen())
     {
+        srand(time(0));
         ////////////////// do not delete //////////////////
         Event evnt;
         while (window.pollEvent(evnt))
@@ -40,7 +42,7 @@ int main()
         Font font;
         if (!font.loadFromFile("C://windows/fonts/coopbl.ttf"))
             throw("CLOUD NOT LOAD FONT!");
-        Text textA,textB,textC,textBack,textT,textF,textIELTS,textTOEIC,textTOELF;
+        Text textA,textB,textC,textBack,textT,textF,textIELTS,textTOEIC,textTOELF,textL;
         //back
         textBack.setFont(font);
         textBack.setCharacterSize(20);
@@ -104,6 +106,10 @@ int main()
         textTOELF.setString("TOELF");
         textTOELF.setOrigin(textTOELF.getGlobalBounds().width /2,textTOELF.getGlobalBounds().height /2);
         textTOELF.setPosition(window.getSize().x/2,545);
+        //learn word
+        textL.setFont(font);
+        textL.setCharacterSize(50);
+        textL.setColor(Color::White);
         ////////////////////////////////////////////////////////////////////////////////////////////
         if(screen==0){ //main screen
             //Press word
@@ -146,7 +152,6 @@ int main()
             window.draw(textC);
             window.display();
         }else if(screen==1){ //word screen
-
             //Press back
             if((float)mousePos.x<Back.posx+(Back.Lx/2) && (float)mousePos.x>Back.posx-(Back.Lx/2)){
                 if((float)mousePos.y<Back.posy+(Back.Ly/2) && (float)mousePos.y>Back.posy-(Back.Ly/2)){
@@ -207,6 +212,8 @@ int main()
                     TOELF.rectan.setFillColor(Color::Yellow);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         system("cls"); //clear screen
+                        word.clear();
+                        des.clear();
                         ifstream source("TOELF");
                         string textline;
                         count=0;
@@ -233,6 +240,12 @@ int main()
             window.draw(textTOELF);
             window.display();
         }else if(screen==2){ //learn screen
+            if(Mouse::isButtonPressed(Mouse::Left)){
+                ranNUM = rand()%(count+1);
+            }
+            textL.setString(word[ranNUM]);
+            textL.setOrigin(textL.getGlobalBounds().width /2,textL.getGlobalBounds().height /2);
+            textL.setPosition(window.getSize().x/2,window.getSize().y/2-70);
 
             //Press back
             if((float)mousePos.x<Back.posx+(Back.Lx/2) && (float)mousePos.x>Back.posx-(Back.Lx/2)){
@@ -249,7 +262,6 @@ int main()
                 if((float)mousePos.y<T.posy+(T.Ly/2) && (float)mousePos.y>T.posy-(T.Ly/2)){
                     T.rectan.setFillColor(Color::Green);
                     if(Mouse::isButtonPressed(Mouse::Left)){
-                        screen = 1;
                         sleep_for(150ms);
                     }
                 }
@@ -259,7 +271,6 @@ int main()
                 if((float)mousePos.y<F.posy+(F.Ly/2) && (float)mousePos.y>F.posy-(F.Ly/2)){
                     F.rectan.setFillColor(Color::Red);
                     if(Mouse::isButtonPressed(Mouse::Left)){
-                        screen = 1;
                         sleep_for(150ms);
                     }
                 }
@@ -272,6 +283,7 @@ int main()
             window.draw(textBack);
             window.draw(textT);
             window.draw(textF);
+            window.draw(textL);
             window.display();
         }else if(screen==3){ //play screen
 

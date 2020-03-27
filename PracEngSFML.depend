@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1585333305 source:c:\users\tang\desktop\compro\project\pracengsfml\main.cpp
+1585338131 source:c:\users\tang\desktop\compro\project\pracengsfml\main.cpp
 	"func.h"
 
 1525794020 c:\users\tang\desktop\compro\library\sfml-2.5.1\include\sfml\graphics.hpp
@@ -416,7 +416,7 @@
 1584989969 source:c:\users\tang\desktop\compro\project\pracengsfml\func.cpp
 	"func.h"
 
-1585329670 c:\users\tang\desktop\compro\project\pracengsfml\func.h
+1585335785 c:\users\tang\desktop\compro\project\pracengsfml\func.h
 	<SFML/Graphics.hpp>
 	<SFML/Window.hpp>
 	<SFML/System.hpp>
@@ -426,4 +426,7 @@
 	<thread>
 	<fstream>
 	<stdlib.h>
+	<ctime>
+	<cstdlib>
+	<mutex>
 
