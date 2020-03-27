@@ -6,6 +6,11 @@ int main()
     RenderWindow window(VideoMode(500,700), "English Easy",Style::Close);
     int screen = 0; //start at main screen
 
+    //variable for collect word and describe
+    vector<string> word;
+    vector<string> des;
+    int count=0; //count word
+
     while (window.isOpen())
     {
         ////////////////// do not delete //////////////////
@@ -158,10 +163,16 @@ int main()
                     IELTS.rectan.setFillColor(Color::Yellow);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         system("cls"); //clear screen
+                        word.clear();
+                        des.clear();
                         ifstream source("IELTS");
                         string textline;
+                        count=0;
                         while(getline(source,textline)){
                             cout << textline << endl;
+                            word.push_back(textline.substr(0,textline.find_first_of("\t")-0));
+                            des.push_back(textline.substr(textline.find_last_of("\t")+1,textline.find_first_of(".")-0));
+                            count++;
                         }
                         source.close();
                         sleep_for(150ms);
@@ -174,10 +185,16 @@ int main()
                     TOEIC.rectan.setFillColor(Color::Yellow);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         system("cls"); //clear screen
+                        word.clear();
+                        des.clear();
                         ifstream source("TOEIC");
                         string textline;
+                        count=0;
                         while(getline(source,textline)){
                             cout << textline << endl;
+                            word.push_back(textline.substr(0,textline.find_first_of("\t")-0));
+                            des.push_back(textline.substr(textline.find_last_of("\t")+1,textline.find_first_of(".")-0));
+                            count++;
                         }
                         source.close();
                         sleep_for(150ms);
@@ -192,8 +209,12 @@ int main()
                         system("cls"); //clear screen
                         ifstream source("TOELF");
                         string textline;
+                        count=0;
                         while(getline(source,textline)){
                             cout << textline << endl;
+                            word.push_back(textline.substr(0,textline.find_first_of("\t")-0));
+                            des.push_back(textline.substr(textline.find_last_of("\t")+1,textline.find_first_of(".")-0));
+                            count++;
                         }
                         source.close();
                         sleep_for(150ms);
