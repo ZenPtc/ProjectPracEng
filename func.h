@@ -2,10 +2,13 @@
 #define FUNC_H_INCLUDED
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/System.hpp>
 #include <iostream>
 #include <vector>
 #include <chrono>
 #include <thread>
+#include <fstream>
 using namespace std;
 using namespace sf;
 using namespace std::this_thread;     // sleep_for, sleep_until
