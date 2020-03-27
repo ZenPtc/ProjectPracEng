@@ -19,6 +19,7 @@ int main()
         Vector2i mousePos = Mouse::getPosition(window);
         //create button
         RectangleShape btonA,btonB,btonC,btonBack,btonT,btonF,btonChoice1,btonChoice2;
+        RectangleShape btonIELTS,btonTOEIC,btonTOELF;
         Bton A(btonA,350,70,window.getSize().x/2,310);
         Bton B(btonB,350,70,window.getSize().x/2,A.posy+125);
         Bton C(btonC,350,70,window.getSize().x/2,B.posy+125);
@@ -27,11 +28,14 @@ int main()
         Bton F(btonF,70,50,window.getSize().x/2+window.getSize().x/4,600);
         Bton Choice1(btonChoice1,170,50,window.getSize().x/3,600);
         Bton Choice2(btonChoice2,170,50,window.getSize().x/3+170,600);
+        Bton IELTS(btonIELTS,350,70,window.getSize().x/2,250);
+        Bton TOEIC(btonTOEIC,350,70,window.getSize().x/2,IELTS.posy+150);
+        Bton TOELF(btonTOELF,350,70,window.getSize().x/2,TOEIC.posy+150);
         /////////////////////////////////////set text////////////////////////////////////////////////
         Font font;
         if (!font.loadFromFile("C://windows/fonts/coopbl.ttf"))
             throw("CLOUD NOT LOAD FONT!");
-        Text textA,textB,textC,textBack,textT,textF;
+        Text textA,textB,textC,textBack,textT,textF,textIELTS,textTOEIC,textTOELF;
         //back
         textBack.setFont(font);
         textBack.setCharacterSize(20);
@@ -74,9 +78,29 @@ int main()
         textF.setString("X");
         textF.setOrigin(textF.getGlobalBounds().width /2,textF.getGlobalBounds().height /2);
         textF.setPosition(window.getSize().x/2+window.getSize().x/4,590);
+        //IELTS
+        textIELTS.setFont(font);
+        textIELTS.setCharacterSize(20);
+        textIELTS.setColor(Color::Black);
+        textIELTS.setString("IELTS");
+        textIELTS.setOrigin(textIELTS.getGlobalBounds().width /2,textIELTS.getGlobalBounds().height /2);
+        textIELTS.setPosition(window.getSize().x/2,245);
+        //TOEIC
+        textTOEIC.setFont(font);
+        textTOEIC.setCharacterSize(20);
+        textTOEIC.setColor(Color::Black);
+        textTOEIC.setString("TOEIC");
+        textTOEIC.setOrigin(textTOEIC.getGlobalBounds().width /2,textTOEIC.getGlobalBounds().height /2);
+        textTOEIC.setPosition(window.getSize().x/2,395);
+        //TOELF
+        textTOELF.setFont(font);
+        textTOELF.setCharacterSize(20);
+        textTOELF.setColor(Color::Black);
+        textTOELF.setString("TOELF");
+        textTOELF.setOrigin(textTOELF.getGlobalBounds().width /2,textTOELF.getGlobalBounds().height /2);
+        textTOELF.setPosition(window.getSize().x/2,545);
         ////////////////////////////////////////////////////////////////////////////////////////////
         if(screen==0){ //main screen
-
             //Press word
             if((float)mousePos.x<A.posx+(A.Lx/2) && (float)mousePos.x>A.posx-(A.Lx/2)){
                 if((float)mousePos.y<A.posy+(A.Ly/2) && (float)mousePos.y>A.posy-(A.Ly/2)){
@@ -128,10 +152,64 @@ int main()
                     }
                 }
             }
+            //IELTS
+            if((float)mousePos.x<IELTS.posx+(IELTS.Lx/2) && (float)mousePos.x>IELTS.posx-(IELTS.Lx/2)){
+                if((float)mousePos.y<IELTS.posy+(IELTS.Ly/2) && (float)mousePos.y>IELTS.posy-(IELTS.Ly/2)){
+                    IELTS.rectan.setFillColor(Color::Yellow);
+                    if(Mouse::isButtonPressed(Mouse::Left)){
+                        system("cls"); //clear screen
+                        ifstream source("IELTS");
+                        string textline;
+                        while(getline(source,textline)){
+                            cout << textline << endl;
+                        }
+                        source.close();
+                        sleep_for(150ms);
+                    }
+                }
+            }
+            //TOEIC
+            if((float)mousePos.x<TOEIC.posx+(TOEIC.Lx/2) && (float)mousePos.x>TOEIC.posx-(TOEIC.Lx/2)){
+                if((float)mousePos.y<TOEIC.posy+(TOEIC.Ly/2) && (float)mousePos.y>TOEIC.posy-(TOEIC.Ly/2)){
+                    TOEIC.rectan.setFillColor(Color::Yellow);
+                    if(Mouse::isButtonPressed(Mouse::Left)){
+                        system("cls"); //clear screen
+                        ifstream source("TOEIC");
+                        string textline;
+                        while(getline(source,textline)){
+                            cout << textline << endl;
+                        }
+                        source.close();
+                        sleep_for(150ms);
+                    }
+                }
+            }
+            //TOELF
+            if((float)mousePos.x<TOELF.posx+(TOELF.Lx/2) && (float)mousePos.x>TOELF.posx-(TOELF.Lx/2)){
+                if((float)mousePos.y<TOELF.posy+(TOELF.Ly/2) && (float)mousePos.y>TOELF.posy-(TOELF.Ly/2)){
+                    TOELF.rectan.setFillColor(Color::Yellow);
+                    if(Mouse::isButtonPressed(Mouse::Left)){
+                        system("cls"); //clear screen
+                        ifstream source("TOELF");
+                        string textline;
+                        while(getline(source,textline)){
+                            cout << textline << endl;
+                        }
+                        source.close();
+                        sleep_for(150ms);
+                    }
+                }
+            }
 
             window.clear();
             window.draw(Back.rectan);
             window.draw(textBack);
+            window.draw(IELTS.rectan);
+            window.draw(TOEIC.rectan);
+            window.draw(TOELF.rectan);
+            window.draw(textIELTS);
+            window.draw(textTOEIC);
+            window.draw(textTOELF);
             window.display();
         }else if(screen==2){ //learn screen
 
@@ -189,7 +267,7 @@ int main()
             //Press Choice1
             if((float)mousePos.x<Choice1.posx+(Choice1.Lx/2) && (float)mousePos.x>Choice1.posx-(Choice1.Lx/2)){
                 if((float)mousePos.y<Choice1.posy+(Choice1.Ly/2) && (float)mousePos.y>Choice1.posy-(Choice1.Ly/2)){
-                    Choice1.rectan.setFillColor(Color::Cyan);
+                    Choice1.rectan.setFillColor(Color::Yellow);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 1;
                         sleep_for(150ms);
@@ -199,7 +277,7 @@ int main()
             //Press Choice2
             if((float)mousePos.x<Choice2.posx+(Choice2.Lx/2) && (float)mousePos.x>Choice2.posx-(Choice2.Lx/2)){
                 if((float)mousePos.y<Choice2.posy+(Choice2.Ly/2) && (float)mousePos.y>Choice2.posy-(Choice2.Ly/2)){
-                    Choice2.rectan.setFillColor(Color::Cyan);
+                    Choice2.rectan.setFillColor(Color::Yellow);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 1;
                         sleep_for(150ms);
