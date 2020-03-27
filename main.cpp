@@ -27,7 +27,7 @@ int main()
         Vector2i mousePos = Mouse::getPosition(window);
         //create button
         RectangleShape btonA,btonB,btonC,btonBack,btonT,btonF,btonChoice1,btonChoice2;
-        RectangleShape btonIELTS,btonTOEIC,btonTOELF;
+        RectangleShape btonIELTS,btonTOEIC,btonTOELF,btonNext;
         Bton A(btonA,350,70,window.getSize().x/2,310);
         Bton B(btonB,350,70,window.getSize().x/2,A.posy+125);
         Bton C(btonC,350,70,window.getSize().x/2,B.posy+125);
@@ -39,11 +39,14 @@ int main()
         Bton IELTS(btonIELTS,350,70,window.getSize().x/2,250);
         Bton TOEIC(btonTOEIC,350,70,window.getSize().x/2,IELTS.posy+150);
         Bton TOELF(btonTOELF,350,70,window.getSize().x/2,TOEIC.posy+150);
+        Bton Next(btonNext,100,40,420,650);
         /////////////////////////////////////set text////////////////////////////////////////////////
-        Font font;
+        Font font,font2;
         if (!font.loadFromFile("C://windows/fonts/coopbl.ttf"))
             throw("CLOUD NOT LOAD FONT!");
-        Text textA,textB,textC,textBack,textT,textF,textIELTS,textTOEIC,textTOELF,textL;
+        if (!font2.loadFromFile("C://windows/fonts/humnst777 blkcn bt black.ttf"))
+            throw("CLOUD NOT LOAD FONT!");
+        Text textA,textB,textC,textBack,textT,textF,textIELTS,textTOEIC,textTOELF,textL,textNext,textDes;
         //back
         textBack.setFont(font);
         textBack.setCharacterSize(20);
@@ -111,6 +114,17 @@ int main()
         textL.setFont(font);
         textL.setCharacterSize(50);
         textL.setColor(Color::White);
+        //Next
+        textNext.setFont(font);
+        textNext.setCharacterSize(20);
+        textNext.setColor(Color::Black);
+        textNext.setString("Next");
+        textNext.setOrigin(textNext.getGlobalBounds().width /2,textNext.getGlobalBounds().height /2);
+        textNext.setPosition(420,645);
+        //text describe
+        textDes.setFont(font2);
+        textDes.setCharacterSize(20);
+        textDes.setColor(Color::White);
         ////////////////////////////////////////////////////////////////////////////////////////////////
         if(screen==0){ //main screen
             //Press word
@@ -250,12 +264,9 @@ int main()
             window.draw(textTOELF);
             window.display();
         }else if(screen==2){ //learn screen
-            if(Mouse::isButtonPressed(Mouse::Left)){
-                ranNUM = rand()%(count+1);
-            }
             textL.setString(word[ranNUM]);
             textL.setOrigin(textL.getGlobalBounds().width /2,textL.getGlobalBounds().height /2);
-            textL.setPosition(window.getSize().x/2,window.getSize().y/2-70);
+            textL.setPosition(window.getSize().x/2,window.getSize().y/2-55);
 
             //Press back
             if((float)mousePos.x<Back.posx+(Back.Lx/2) && (float)mousePos.x>Back.posx-(Back.Lx/2)){
@@ -272,6 +283,10 @@ int main()
                 if((float)mousePos.y<T.posy+(T.Ly/2) && (float)mousePos.y>T.posy-(T.Ly/2)){
                     T.rectan.setFillColor(Color::Green);
                     if(Mouse::isButtonPressed(Mouse::Left)){
+                        ranNUM = rand()%(count);
+                        textL.setString(word[ranNUM]);
+                        textL.setOrigin(textL.getGlobalBounds().width /2,textL.getGlobalBounds().height /2);
+                        textL.setPosition(window.getSize().x/2,window.getSize().y/2-55);
                         sleep_for(150ms);
                     }
                 }
@@ -281,6 +296,7 @@ int main()
                 if((float)mousePos.y<F.posy+(F.Ly/2) && (float)mousePos.y>F.posy-(F.Ly/2)){
                     F.rectan.setFillColor(Color::Red);
                     if(Mouse::isButtonPressed(Mouse::Left)){
+                        screen = 4;
                         sleep_for(150ms);
                     }
                 }
@@ -312,7 +328,6 @@ int main()
                 if((float)mousePos.y<Choice1.posy+(Choice1.Ly/2) && (float)mousePos.y>Choice1.posy-(Choice1.Ly/2)){
                     Choice1.rectan.setFillColor(Color::Yellow);
                     if(Mouse::isButtonPressed(Mouse::Left)){
-                        screen = 1;
                         sleep_for(150ms);
                     }
                 }
@@ -322,7 +337,6 @@ int main()
                 if((float)mousePos.y<Choice2.posy+(Choice2.Ly/2) && (float)mousePos.y>Choice2.posy-(Choice2.Ly/2)){
                     Choice2.rectan.setFillColor(Color::Yellow);
                     if(Mouse::isButtonPressed(Mouse::Left)){
-                        screen = 1;
                         sleep_for(150ms);
                     }
                 }
@@ -333,6 +347,46 @@ int main()
             window.draw(Choice1.rectan);
             window.draw(Choice2.rectan);
             window.draw(textBack);
+            window.display();
+        }else if(screen==4){  //don't know word screen
+            //word
+            textL.setString(word[ranNUM]);
+            textL.setOrigin(textL.getGlobalBounds().width /2,textL.getGlobalBounds().height /2);
+            textL.setPosition(window.getSize().x/2,window.getSize().y/2-70);
+            //text describe
+            textDes.setString(des[ranNUM]);
+            if(des[ranNUM].size()>40) textDes.setCharacterSize(17);
+            textDes.setOrigin(textDes.getGlobalBounds().width /2,textDes.getGlobalBounds().height /2);
+            textDes.setPosition(window.getSize().x/2,window.getSize().y/2+20);
+
+            //Press back
+            if((float)mousePos.x<Back.posx+(Back.Lx/2) && (float)mousePos.x>Back.posx-(Back.Lx/2)){
+                if((float)mousePos.y<Back.posy+(Back.Ly/2) && (float)mousePos.y>Back.posy-(Back.Ly/2)){
+                    Back.rectan.setFillColor(Color::Cyan);
+                    if(Mouse::isButtonPressed(Mouse::Left)){
+                        screen = 0;
+                        sleep_for(150ms);
+                    }
+                }
+            }
+            //Press next
+            if((float)mousePos.x<Next.posx+(Next.Lx/2) && (float)mousePos.x>Next.posx-(Next.Lx/2)){
+                if((float)mousePos.y<Next.posy+(Next.Ly/2) && (float)mousePos.y>Next.posy-(Next.Ly/2)){
+                    Next.rectan.setFillColor(Color::Cyan);
+                    if(Mouse::isButtonPressed(Mouse::Left)){
+                        screen = 2;
+                        sleep_for(150ms);
+                    }
+                }
+            }
+
+            window.clear();
+            window.draw(Back.rectan);
+            window.draw(textBack);
+            window.draw(Next.rectan);
+            window.draw(textNext);
+            window.draw(textL);
+            window.draw(textDes);
             window.display();
         }
     }

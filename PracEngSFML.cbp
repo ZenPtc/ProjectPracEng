@@ -49,6 +49,9 @@
 		<Linker>
 			<Add directory="C:/Users/Tang/Desktop/ComPro/library/SFML-2.5.1/lib" />
 		</Linker>
+		<Unit filename="IELTS" />
+		<Unit filename="TOEIC" />
+		<Unit filename="TOELF" />
 		<Unit filename="func.cpp" />
 		<Unit filename="func.h" />
 		<Unit filename="main.cpp" />
