@@ -10,7 +10,8 @@ int main()
     vector<string> word;
     vector<string> des;
     int count=0; //count word
-    int ranNUM=0;
+    int ranNUM=0; //set stater for random
+    bool CHW = false; //check have word?
 
     while (window.isOpen())
     {
@@ -110,7 +111,7 @@ int main()
         textL.setFont(font);
         textL.setCharacterSize(50);
         textL.setColor(Color::White);
-        ////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////
         if(screen==0){ //main screen
             //Press word
             if((float)mousePos.x<A.posx+(A.Lx/2) && (float)mousePos.x>A.posx-(A.Lx/2)){
@@ -122,25 +123,31 @@ int main()
                     }
                 }
             }
-            //Press learn
-            if((float)mousePos.x<B.posx+(B.Lx/2) && (float)mousePos.x>B.posx-(B.Lx/2)){
-                if((float)mousePos.y<B.posy+(B.Ly/2) && (float)mousePos.y>B.posy-(B.Ly/2)){
-                    B.rectan.setFillColor(Color::Cyan);
-                    if(Mouse::isButtonPressed(Mouse::Left)){
-                        screen = 2;
-                        sleep_for(150ms);
+            if(CHW){
+                //Press learn
+                if((float)mousePos.x<B.posx+(B.Lx/2) && (float)mousePos.x>B.posx-(B.Lx/2)){
+                    if((float)mousePos.y<B.posy+(B.Ly/2) && (float)mousePos.y>B.posy-(B.Ly/2)){
+                        B.rectan.setFillColor(Color::Cyan);
+                        if(Mouse::isButtonPressed(Mouse::Left)){
+                            screen = 2;
+                            sleep_for(150ms);
+                        }
                     }
                 }
-            }
-            //Press play
-            if((float)mousePos.x<C.posx+(C.Lx/2) && (float)mousePos.x>C.posx-(C.Lx/2)){
-                if((float)mousePos.y<C.posy+(C.Ly/2) && (float)mousePos.y>C.posy-(C.Ly/2)){
-                    C.rectan.setFillColor(Color::Cyan);
-                    if(Mouse::isButtonPressed(Mouse::Left)){
-                        screen = 3;
-                        sleep_for(150ms);
+                //Press play
+                if((float)mousePos.x<C.posx+(C.Lx/2) && (float)mousePos.x>C.posx-(C.Lx/2)){
+                    if((float)mousePos.y<C.posy+(C.Ly/2) && (float)mousePos.y>C.posy-(C.Ly/2)){
+                        C.rectan.setFillColor(Color::Cyan);
+                        if(Mouse::isButtonPressed(Mouse::Left)){
+                            screen = 3;
+                            sleep_for(150ms);
+                        }
                     }
                 }
+            }else{
+                sf::Color Gray(100,100,100);
+                B.rectan.setFillColor(Gray);
+                C.rectan.setFillColor(Gray);
             }
 
             window.clear();
@@ -167,6 +174,7 @@ int main()
                 if((float)mousePos.y<IELTS.posy+(IELTS.Ly/2) && (float)mousePos.y>IELTS.posy-(IELTS.Ly/2)){
                     IELTS.rectan.setFillColor(Color::Yellow);
                     if(Mouse::isButtonPressed(Mouse::Left)){
+                        CHW = true;
                         system("cls"); //clear screen
                         word.clear();
                         des.clear();
@@ -189,6 +197,7 @@ int main()
                 if((float)mousePos.y<TOEIC.posy+(TOEIC.Ly/2) && (float)mousePos.y>TOEIC.posy-(TOEIC.Ly/2)){
                     TOEIC.rectan.setFillColor(Color::Yellow);
                     if(Mouse::isButtonPressed(Mouse::Left)){
+                        CHW = true;
                         system("cls"); //clear screen
                         word.clear();
                         des.clear();
@@ -211,6 +220,7 @@ int main()
                 if((float)mousePos.y<TOELF.posy+(TOELF.Ly/2) && (float)mousePos.y>TOELF.posy-(TOELF.Ly/2)){
                     TOELF.rectan.setFillColor(Color::Yellow);
                     if(Mouse::isButtonPressed(Mouse::Left)){
+                        CHW = true;
                         system("cls"); //clear screen
                         word.clear();
                         des.clear();
