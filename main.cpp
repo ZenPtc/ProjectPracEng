@@ -26,9 +26,16 @@ int main()
         ///////////////////////////////////////////////////
         Vector2i mousePos = Mouse::getPosition(window);
         //create button
-        RectangleShape btonA,btonB,btonC,btonBack,btonT,btonF,btonChoice1,btonChoice2;
-        RectangleShape btonIELTS,btonTOEIC,btonTOELF,btonNext;
-        Bton A(btonA,350,70,window.getSize().x/2,310);
+        RectangleShape btonA,btonB,btonC,btonBack,btonT,btonF,btonChoice1,btonChoice2,
+                        btonIELTS,btonTOEIC,btonTOELF,btonNext,
+                        nameRect,tuRect,moneyRect,tar1Rect,tar2Rect,tar3Rect;
+        Bton Name(nameRect,302.5,163.5,window.getSize().x/2,165);
+        Bton Tu(tuRect,255,199,150,377.5);
+        Bton Money(moneyRect,93,84.375,367.5,65);
+        Bton Tar1(tar1Rect,92,80,237,166);
+        Bton Tar2(tar2Rect,79,80,368.5,246);
+        Bton Tar3(tar3Rect,98,80,414,394);
+        Bton A(btonA,350,70,window.getSize().x/2,Name.posy+170);
         Bton B(btonB,350,70,window.getSize().x/2,A.posy+125);
         Bton C(btonC,350,70,window.getSize().x/2,B.posy+125);
         Bton Back(btonBack,100,40,80,50);
@@ -40,6 +47,20 @@ int main()
         Bton TOEIC(btonTOEIC,350,70,window.getSize().x/2,IELTS.posy+150);
         Bton TOELF(btonTOELF,350,70,window.getSize().x/2,TOEIC.posy+150);
         Bton Next(btonNext,100,40,420,650);
+        ///////////////set texture///////////////
+        Texture nameTexture,tuTexture,moneyTexture,tar1Texture,tar2Texture,tar3Texture;
+        nameTexture.loadFromFile("program name.png");
+        tuTexture.loadFromFile("tu.png");
+        moneyTexture.loadFromFile("money.png");
+        tar1Texture.loadFromFile("target1.png");
+        tar2Texture.loadFromFile("target2.png");
+        tar3Texture.loadFromFile("target1.png");
+        Name.rectan.setTexture(&nameTexture);
+        Tu.rectan.setTexture(&tuTexture);
+        Money.rectan.setTexture(&moneyTexture);
+        Tar1.rectan.setTexture(&tar1Texture);
+        Tar2.rectan.setTexture(&tar2Texture);
+        Tar3.rectan.setTexture(&tar3Texture);
         /////////////////////////////////////set text////////////////////////////////////////////////
         Font font,font2;
         if (!font.loadFromFile("C://windows/fonts/coopbl.ttf"))
@@ -53,63 +74,63 @@ int main()
         textBack.setColor(Color::Black);
         textBack.setString("BACK");
         textBack.setOrigin(textBack.getGlobalBounds().width /2,textBack.getGlobalBounds().height /2);
-        textBack.setPosition(80, 45);
+        textBack.setPosition(80,Back.posy-5);
         //word
         textA.setFont(font);
         textA.setCharacterSize(20);
         textA.setColor(Color::Black);
         textA.setString("WORD");
         textA.setOrigin(textA.getGlobalBounds().width /2,textA.getGlobalBounds().height /2);
-        textA.setPosition(window.getSize().x /2, 305);
+        textA.setPosition(window.getSize().x /2,A.posy-5);
         //learn
         textB.setFont(font);
         textB.setCharacterSize(20);
         textB.setColor(Color::Black);
         textB.setString("LEARN");
         textB.setOrigin(textB.getGlobalBounds().width /2,textB.getGlobalBounds().height /2);
-        textB.setPosition(window.getSize().x /2, 430);
+        textB.setPosition(window.getSize().x /2,B.posy-5);
         //play
         textC.setFont(font);
         textC.setCharacterSize(20);
         textC.setColor(Color::Black);
         textC.setString("PLAY");
         textC.setOrigin(textC.getGlobalBounds().width /2,textC.getGlobalBounds().height /2);
-        textC.setPosition(window.getSize().x /2, 555);
+        textC.setPosition(window.getSize().x /2,C.posy-5);
         //known
         textT.setFont(font);
         textT.setCharacterSize(35);
         textT.setColor(Color::Black);
         textT.setString("O");
         textT.setOrigin(textT.getGlobalBounds().width /2,textT.getGlobalBounds().height /2);
-        textT.setPosition(window.getSize().x /4, 590);
+        textT.setPosition(window.getSize().x /4,T.posy-10);
         //not yet
         textF.setFont(font);
         textF.setCharacterSize(35);
         textF.setColor(Color::Black);
         textF.setString("X");
         textF.setOrigin(textF.getGlobalBounds().width /2,textF.getGlobalBounds().height /2);
-        textF.setPosition(window.getSize().x/2+window.getSize().x/4,590);
+        textF.setPosition(window.getSize().x/2+window.getSize().x/4,F.posy-10);
         //IELTS
         textIELTS.setFont(font);
         textIELTS.setCharacterSize(20);
         textIELTS.setColor(Color::Black);
         textIELTS.setString("IELTS");
         textIELTS.setOrigin(textIELTS.getGlobalBounds().width /2,textIELTS.getGlobalBounds().height /2);
-        textIELTS.setPosition(window.getSize().x/2,245);
+        textIELTS.setPosition(window.getSize().x/2,IELTS.posy-5);
         //TOEIC
         textTOEIC.setFont(font);
         textTOEIC.setCharacterSize(20);
         textTOEIC.setColor(Color::Black);
         textTOEIC.setString("TOEIC");
         textTOEIC.setOrigin(textTOEIC.getGlobalBounds().width /2,textTOEIC.getGlobalBounds().height /2);
-        textTOEIC.setPosition(window.getSize().x/2,395);
+        textTOEIC.setPosition(window.getSize().x/2,TOEIC.posy-5);
         //TOELF
         textTOELF.setFont(font);
         textTOELF.setCharacterSize(20);
         textTOELF.setColor(Color::Black);
         textTOELF.setString("TOELF");
         textTOELF.setOrigin(textTOELF.getGlobalBounds().width /2,textTOELF.getGlobalBounds().height /2);
-        textTOELF.setPosition(window.getSize().x/2,545);
+        textTOELF.setPosition(window.getSize().x/2,TOELF.posy-5);
         //learn word
         textL.setFont(font);
         textL.setCharacterSize(50);
@@ -120,7 +141,7 @@ int main()
         textNext.setColor(Color::Black);
         textNext.setString("Next");
         textNext.setOrigin(textNext.getGlobalBounds().width /2,textNext.getGlobalBounds().height /2);
-        textNext.setPosition(420,645);
+        textNext.setPosition(420,Next.posy-5);
         //text describe
         textDes.setFont(font2);
         textDes.setCharacterSize(20);
@@ -165,6 +186,7 @@ int main()
             }
 
             window.clear();
+            window.draw(Name.rectan);
             window.draw(A.rectan);
             window.draw(B.rectan);
             window.draw(C.rectan);
@@ -344,6 +366,11 @@ int main()
 
             window.clear();
             window.draw(Back.rectan);
+            window.draw(Tu.rectan);
+            window.draw(Money.rectan);
+            window.draw(Tar1.rectan);
+            window.draw(Tar2.rectan);
+            window.draw(Tar3.rectan);
             window.draw(Choice1.rectan);
             window.draw(Choice2.rectan);
             window.draw(textBack);
