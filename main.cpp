@@ -12,6 +12,7 @@ int main()
     int count=0; //count word
     int ranNUM1=0,ranNUM2=1,ranChoice=0; //set stater for random
     bool CHW = false; //check have word?
+    int highscore=0,score=0;
 
     while (window.isOpen())
     {
@@ -377,6 +378,8 @@ int main()
             while(ranNUM2==ranNUM1) ranNUM2 = rand()%(count);
 
             if(ranChoice==0){
+                if(word[ranNUM1].size()>12) textC1.setCharacterSize(16);
+                if(word[ranNUM2].size()>12) textC2.setCharacterSize(16);
                 textC1.setString(word[ranNUM1]);
                 textC1.setOrigin(textC1.getGlobalBounds().width /2,textC1.getGlobalBounds().height /2);
                 textC1.setPosition(Choice1.posx,Choice1.posy-5);
@@ -384,6 +387,8 @@ int main()
                 textC2.setOrigin(textC2.getGlobalBounds().width /2,textC2.getGlobalBounds().height /2);
                 textC2.setPosition(Choice2.posx,Choice2.posy-5);
             }else if(ranChoice==1){
+                if(word[ranNUM1].size()>12) textC2.setCharacterSize(16);
+                if(word[ranNUM2].size()>12) textC1.setCharacterSize(16);
                 textC1.setString(word[ranNUM2]);
                 textC1.setOrigin(textC1.getGlobalBounds().width /2,textC1.getGlobalBounds().height /2);
                 textC1.setPosition(Choice1.posx,Choice1.posy-5);
@@ -402,6 +407,7 @@ int main()
                 if((float)mousePos.y<Back.posy+(Back.Ly/2) && (float)mousePos.y>Back.posy-(Back.Ly/2)){
                     Back.rectan.setFillColor(Color::Cyan);
                     if(Mouse::isButtonPressed(Mouse::Left)){
+                        score=0;
                         screen = 0;
                         sleep_for(150ms);
                     }
@@ -414,7 +420,7 @@ int main()
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         if(ranChoice==0){
                             cout << "correct" << endl;
-                        }else screen=5;
+                        }else cout << "false" << endl;
                         ranChoice = rand()%2;
                         ranNUM1 = rand()%(count);
                         ranNUM2 = rand()%(count);
@@ -516,6 +522,8 @@ int main()
                 }
             }
 
+            //reset
+            score=0;
 
             window.clear();
             window.draw(Back.rectan);
