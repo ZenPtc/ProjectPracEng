@@ -10,7 +10,7 @@ int main()
     vector<string> word;
     vector<string> des;
     int count=0; //count word
-    int ranNUM=0; //set stater for random
+    int ranNUM1=0,ranNUM2=1,ranChoice=0; //set stater for random
     bool CHW = false; //check have word?
 
     while (window.isOpen())
@@ -67,7 +67,16 @@ int main()
             throw("CLOUD NOT LOAD FONT!");
         if (!font2.loadFromFile("C://windows/fonts/humnst777 blkcn bt black.ttf"))
             throw("CLOUD NOT LOAD FONT!");
-        Text textA,textB,textC,textBack,textT,textF,textIELTS,textTOEIC,textTOELF,textL,textNext,textDes;
+        Text textA,textB,textC,textBack,textT,textF,textIELTS,textTOEIC,textTOELF,
+                textL,textNext,textDes,textC1,textC2;
+        //Choice1
+        textC1.setFont(font);
+        textC1.setCharacterSize(20);
+        textC1.setColor(Color::Black);
+        //Choice2
+        textC2.setFont(font);
+        textC2.setCharacterSize(20);
+        textC2.setColor(Color::Black);
         //back
         textBack.setFont(font);
         textBack.setCharacterSize(20);
@@ -286,7 +295,7 @@ int main()
             window.draw(textTOELF);
             window.display();
         }else if(screen==2){ //learn screen
-            textL.setString(word[ranNUM]);
+            textL.setString(word[ranNUM1]);
             textL.setOrigin(textL.getGlobalBounds().width /2,textL.getGlobalBounds().height /2);
             textL.setPosition(window.getSize().x/2,window.getSize().y/2-55);
 
@@ -305,8 +314,8 @@ int main()
                 if((float)mousePos.y<T.posy+(T.Ly/2) && (float)mousePos.y>T.posy-(T.Ly/2)){
                     T.rectan.setFillColor(Color::Green);
                     if(Mouse::isButtonPressed(Mouse::Left)){
-                        ranNUM = rand()%(count);
-                        textL.setString(word[ranNUM]);
+                        ranNUM1 = rand()%(count);
+                        textL.setString(word[ranNUM1]);
                         textL.setOrigin(textL.getGlobalBounds().width /2,textL.getGlobalBounds().height /2);
                         textL.setPosition(window.getSize().x/2,window.getSize().y/2-55);
                         sleep_for(150ms);
@@ -335,6 +344,29 @@ int main()
             window.display();
         }else if(screen==3){ //play screen
 
+            while(ranNUM2==ranNUM1) ranNUM2 = rand()%(count);
+
+            if(ranChoice==0){
+                textC1.setString(word[ranNUM1]);
+                textC1.setOrigin(textC1.getGlobalBounds().width /2,textC1.getGlobalBounds().height /2);
+                textC1.setPosition(Choice1.posx,Choice1.posy-5);
+                textC2.setString(word[ranNUM2]);
+                textC2.setOrigin(textC2.getGlobalBounds().width /2,textC2.getGlobalBounds().height /2);
+                textC2.setPosition(Choice2.posx,Choice2.posy-5);
+            }else if(ranChoice==1){
+                textC1.setString(word[ranNUM2]);
+                textC1.setOrigin(textC1.getGlobalBounds().width /2,textC1.getGlobalBounds().height /2);
+                textC1.setPosition(Choice1.posx,Choice1.posy-5);
+                textC2.setString(word[ranNUM1]);
+                textC2.setOrigin(textC2.getGlobalBounds().width /2,textC2.getGlobalBounds().height /2);
+                textC2.setPosition(Choice2.posx,Choice2.posy-5);
+            }
+
+            textDes.setString(des[ranNUM1]);
+            if(des[ranNUM1].size()>40) textDes.setCharacterSize(17);
+            textDes.setOrigin(textDes.getGlobalBounds().width /2,textDes.getGlobalBounds().height /2);
+            textDes.setPosition(window.getSize().x/2,522+10);
+
             //Press back
             if((float)mousePos.x<Back.posx+(Back.Lx/2) && (float)mousePos.x>Back.posx-(Back.Lx/2)){
                 if((float)mousePos.y<Back.posy+(Back.Ly/2) && (float)mousePos.y>Back.posy-(Back.Ly/2)){
@@ -350,6 +382,13 @@ int main()
                 if((float)mousePos.y<Choice1.posy+(Choice1.Ly/2) && (float)mousePos.y>Choice1.posy-(Choice1.Ly/2)){
                     Choice1.rectan.setFillColor(Color::Yellow);
                     if(Mouse::isButtonPressed(Mouse::Left)){
+                        if(ranChoice==0){
+                            cout << "correct" << endl;
+                        }else cout << "false" << endl;
+                        ranChoice = rand()%2;
+                        ranNUM1 = rand()%(count);
+                        ranNUM2 = rand()%(count);
+                        while(ranNUM2==ranNUM1) ranNUM2 = rand()%(count);
                         sleep_for(150ms);
                     }
                 }
@@ -359,6 +398,13 @@ int main()
                 if((float)mousePos.y<Choice2.posy+(Choice2.Ly/2) && (float)mousePos.y>Choice2.posy-(Choice2.Ly/2)){
                     Choice2.rectan.setFillColor(Color::Yellow);
                     if(Mouse::isButtonPressed(Mouse::Left)){
+                        if(ranChoice==1){
+                            cout << "correct" << endl;
+                        }else cout << "false" << endl;
+                        ranChoice = rand()%2;
+                        ranNUM1 = rand()%(count);
+                        ranNUM2 = rand()%(count);
+                        while(ranNUM2==ranNUM1) ranNUM2 = rand()%(count);
                         sleep_for(150ms);
                     }
                 }
@@ -373,16 +419,19 @@ int main()
             window.draw(Tar3.rectan);
             window.draw(Choice1.rectan);
             window.draw(Choice2.rectan);
+            window.draw(textDes);
             window.draw(textBack);
+            window.draw(textC1);
+            window.draw(textC2);
             window.display();
         }else if(screen==4){  //don't know word screen
             //word
-            textL.setString(word[ranNUM]);
+            textL.setString(word[ranNUM1]);
             textL.setOrigin(textL.getGlobalBounds().width /2,textL.getGlobalBounds().height /2);
             textL.setPosition(window.getSize().x/2,window.getSize().y/2-70);
             //text describe
-            textDes.setString(des[ranNUM]);
-            if(des[ranNUM].size()>40) textDes.setCharacterSize(17);
+            textDes.setString(des[ranNUM1]);
+            if(des[ranNUM1].size()>40) textDes.setCharacterSize(17);
             textDes.setOrigin(textDes.getGlobalBounds().width /2,textDes.getGlobalBounds().height /2);
             textDes.setPosition(window.getSize().x/2,window.getSize().y/2+20);
 
@@ -414,6 +463,10 @@ int main()
             window.draw(textNext);
             window.draw(textL);
             window.draw(textDes);
+            window.display();
+        }else if(screen==5){  //game over screen
+
+            window.clear();
             window.display();
         }
     }
