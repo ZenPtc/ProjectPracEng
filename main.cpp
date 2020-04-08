@@ -62,13 +62,43 @@ int main()
         Tar2.rectan.setTexture(&tar2Texture);
         Tar3.rectan.setTexture(&tar3Texture);
         /////////////////////////////////////set text////////////////////////////////////////////////
-        Font font,font2;
+        Font font,font2,font3;
         if (!font.loadFromFile("C://windows/fonts/coopbl.ttf"))
             throw("CLOUD NOT LOAD FONT!");
         if (!font2.loadFromFile("C://windows/fonts/humnst777 blkcn bt black.ttf"))
             throw("CLOUD NOT LOAD FONT!");
+        if (!font3.loadFromFile("C://windows/fonts/framd.ttf"))
+            throw("CLOUD NOT LOAD FONT!");
         Text textA,textB,textC,textBack,textT,textF,textIELTS,textTOEIC,textTOELF,
-                textL,textNext,textDes,textC1,textC2;
+                textL,textNext,textDes,textC1,textC2,textLOSE,textHS,textYS,textCheer;
+        //cheer up!
+        textCheer.setFont(font3);
+        textCheer.setCharacterSize(25);
+        textCheer.setColor(Color::White);
+        textCheer.setString("May the force be with you.");
+        textCheer.setOrigin(textCheer.getGlobalBounds().width /2,textCheer.getGlobalBounds().height /2);
+        textCheer.setPosition(window.getSize().x/2,window.getSize().y/3+280);
+        //your score
+        textYS.setFont(font3);
+        textYS.setCharacterSize(25);
+        textYS.setStyle(Text::Bold);
+        textYS.setColor(Color::White);
+        textYS.setString("YOUR SCORE :");
+        textYS.setPosition(window.getSize().x/4,window.getSize().y/3+150);
+        //high score
+        textHS.setFont(font3);
+        textHS.setCharacterSize(25);
+        textHS.setStyle(Text::Bold);
+        textHS.setColor(Color::White);
+        textHS.setString("HIGH SCORE :");
+        textHS.setPosition(window.getSize().x/4,window.getSize().y/3+70);
+        //game over
+        textLOSE.setFont(font);
+        textLOSE.setCharacterSize(50);
+        textLOSE.setColor(Color::White);
+        textLOSE.setString("GAME OVER");
+        textLOSE.setOrigin(textLOSE.getGlobalBounds().width /2,textLOSE.getGlobalBounds().height /2);
+        textLOSE.setPosition(window.getSize().x/2,window.getSize().y/4);
         //Choice1
         textC1.setFont(font);
         textC1.setCharacterSize(20);
@@ -384,7 +414,7 @@ int main()
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         if(ranChoice==0){
                             cout << "correct" << endl;
-                        }else cout << "false" << endl;
+                        }else screen=5;
                         ranChoice = rand()%2;
                         ranNUM1 = rand()%(count);
                         ranNUM2 = rand()%(count);
@@ -400,7 +430,7 @@ int main()
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         if(ranChoice==1){
                             cout << "correct" << endl;
-                        }else cout << "false" << endl;
+                        }else screen=5;
                         ranChoice = rand()%2;
                         ranNUM1 = rand()%(count);
                         ranNUM2 = rand()%(count);
@@ -465,8 +495,37 @@ int main()
             window.draw(textDes);
             window.display();
         }else if(screen==5){  //game over screen
+            //Press back
+            if((float)mousePos.x<Back.posx+(Back.Lx/2) && (float)mousePos.x>Back.posx-(Back.Lx/2)){
+                if((float)mousePos.y<Back.posy+(Back.Ly/2) && (float)mousePos.y>Back.posy-(Back.Ly/2)){
+                    Back.rectan.setFillColor(Color::Cyan);
+                    if(Mouse::isButtonPressed(Mouse::Left)){
+                        screen = 0;
+                        sleep_for(150ms);
+                    }
+                }
+            }
+            //Press next
+            if((float)mousePos.x<Next.posx+(Next.Lx/2) && (float)mousePos.x>Next.posx-(Next.Lx/2)){
+                if((float)mousePos.y<Next.posy+(Next.Ly/2) && (float)mousePos.y>Next.posy-(Next.Ly/2)){
+                    Next.rectan.setFillColor(Color::Cyan);
+                    if(Mouse::isButtonPressed(Mouse::Left)){
+                        screen = 3;
+                        sleep_for(150ms);
+                    }
+                }
+            }
+
 
             window.clear();
+            window.draw(Back.rectan);
+            window.draw(textBack);
+            window.draw(Next.rectan);
+            window.draw(textNext);
+            window.draw(textLOSE);
+            window.draw(textHS);
+            window.draw(textYS);
+            window.draw(textCheer);
             window.display();
         }
     }
