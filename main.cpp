@@ -71,7 +71,8 @@ int main()
         if (!font3.loadFromFile("C://windows/fonts/framd.ttf"))
             throw("CLOUD NOT LOAD FONT!");
         Text textA,textB,textC,textBack,textT,textF,textIELTS,textTOEIC,textTOELF,
-                textL,textNext,textDes,textC1,textC2,textLOSE,textHS,textYS,textCheer;
+                textL,textNext,textDes,textC1,textC2,textLOSE,textHS,textYS,textCheer,
+                textSscore;
         //cheer up!
         textCheer.setFont(font3);
         textCheer.setCharacterSize(25);
@@ -84,15 +85,11 @@ int main()
         textYS.setCharacterSize(25);
         textYS.setStyle(Text::Bold);
         textYS.setColor(Color::White);
-        textYS.setString("YOUR SCORE :");
-        textYS.setPosition(window.getSize().x/4,window.getSize().y/3+150);
         //high score
         textHS.setFont(font3);
         textHS.setCharacterSize(25);
         textHS.setStyle(Text::Bold);
         textHS.setColor(Color::White);
-        textHS.setString("HIGH SCORE :");
-        textHS.setPosition(window.getSize().x/4,window.getSize().y/3+70);
         //game over
         textLOSE.setFont(font);
         textLOSE.setCharacterSize(50);
@@ -186,6 +183,12 @@ int main()
         textDes.setFont(font2);
         textDes.setCharacterSize(20);
         textDes.setColor(Color::White);
+        //show score
+        textSscore.setFont(font2);
+        textSscore.setCharacterSize(60);
+        textSscore.setColor(Color::White);
+        textNext.setOrigin(textNext.getGlobalBounds().width /2,textNext.getGlobalBounds().height /2);
+        textSscore.setPosition(422.5,35);
         ////////////////////////////////////////////////////////////////////////////////////////////////
         if(screen==0){ //main screen
             //Press word
@@ -419,8 +422,11 @@ int main()
                     Choice1.rectan.setFillColor(Color::Yellow);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         if(ranChoice==0){
-                            cout << "correct" << endl;
-                        }else cout << "false" << endl;
+                            score++;
+                        }else{
+                            screen=5;
+                            sleep_for(150ms);
+                        }
                         ranChoice = rand()%2;
                         ranNUM1 = rand()%(count);
                         ranNUM2 = rand()%(count);
@@ -435,8 +441,11 @@ int main()
                     Choice2.rectan.setFillColor(Color::Yellow);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         if(ranChoice==1){
-                            cout << "correct" << endl;
-                        }else screen=5;
+                            score++;
+                        }else{
+                            screen=5;
+                            sleep_for(150ms);
+                        }
                         ranChoice = rand()%2;
                         ranNUM1 = rand()%(count);
                         ranNUM2 = rand()%(count);
@@ -445,6 +454,9 @@ int main()
                     }
                 }
             }
+            char Sscore[10];
+            sprintf(Sscore,"%d",score);
+            textSscore.setString(Sscore);
 
             window.clear();
             window.draw(Back.rectan);
@@ -455,6 +467,7 @@ int main()
             window.draw(Tar3.rectan);
             window.draw(Choice1.rectan);
             window.draw(Choice2.rectan);
+            window.draw(textSscore);
             window.draw(textDes);
             window.draw(textBack);
             window.draw(textC1);
@@ -508,6 +521,7 @@ int main()
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 0;
                         sleep_for(150ms);
+                        score=0;
                     }
                 }
             }
@@ -518,12 +532,27 @@ int main()
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 3;
                         sleep_for(150ms);
+                        score=0;
                     }
                 }
             }
 
-            //reset
-            score=0;
+            string Yscore = "YOUR SCORE : ";
+            string Hscore = "HIGH SCORE : ";
+            if(score>highscore) highscore = score;
+            char Sscore[10],SHscore[10];
+            sprintf(Sscore,"%d",score);
+            sprintf(SHscore,"%d",highscore);
+            Yscore += Sscore;
+            Hscore += SHscore;
+            //high score
+            textHS.setString(Hscore);
+            textHS.setOrigin(textHS.getGlobalBounds().width /2,textHS.getGlobalBounds().height /2);
+            textHS.setPosition(window.getSize().x/2,window.getSize().y/2-42);
+            //your score
+            textYS.setString(Yscore);
+            textYS.setOrigin(textYS.getGlobalBounds().width /2,textYS.getGlobalBounds().height /2);
+            textYS.setPosition(window.getSize().x/2,window.getSize().y/2+42);
 
             window.clear();
             window.draw(Back.rectan);

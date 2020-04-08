@@ -9,6 +9,8 @@
 #include <chrono>
 #include <thread>
 #include <fstream>
+#include <windows.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <ctime>
 #include <cstdlib>
