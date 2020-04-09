@@ -53,6 +53,7 @@
 		<Linker>
 			<Add directory="../SFML-2.5.1-windows-gcc-5.1.0-tdm-32-bit/SFML-2.5.1/lib" />
 		</Linker>
+		<Unit filename="Animation.cpp" />
 		<Unit filename="func.cpp" />
 		<Unit filename="func.h" />
 		<Unit filename="main.cpp" />

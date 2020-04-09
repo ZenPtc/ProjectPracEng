@@ -1,4 +1,4 @@
-#include"func.h"
+/*#include"func.h"
 using namespace sf;
 
     //set render window
@@ -34,4 +34,4 @@ using namespace sf;
         window.draw(btonchoice2);
         window.display();
     }
-
+*/

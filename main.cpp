@@ -1,7 +1,7 @@
 #include"func.h"
 using namespace sf;
 
-int main()
+/*int main()
 {
     //set render window
     float w_height=700, w_width=500;
@@ -42,4 +42,4 @@ int main()
     return 0;
 
 }
-
+*/

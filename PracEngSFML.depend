@@ -429,7 +429,7 @@
 	<iostream>
 	<vector>
 
-1584806990 source:c:\users\user\desktop\projectpraceng\main.cpp
+1586279160 source:c:\users\user\desktop\projectpraceng\main.cpp
 	"func.h"
 
 1525812018 c:\users\user\desktop\sfml-2.5.1-windows-gcc-5.1.0-tdm-32-bit\sfml-2.5.1\include\sfml\graphics.hpp
@@ -841,7 +841,10 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1584807009 source:c:\users\user\desktop\projectpraceng\page2.cpp
+1586268611 source:c:\users\user\desktop\projectpraceng\page2.cpp
 
-1584807009 source:c:\users\user\desktop\projectpraceng\page3.cpp
+1586268611 source:c:\users\user\desktop\projectpraceng\page3.cpp
+
+1586456401 source:c:\users\user\desktop\projectpraceng\animation.cpp
+	"SFML/Graphics.hpp"
 
