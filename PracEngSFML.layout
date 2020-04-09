@@ -9,34 +9,41 @@
 	</File>
 	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="16014" topLine="205" />
+			<Cursor1 position="20267" topLine="247" />
 		</Cursor>
 		<Folding>
-			<Collapse line="151" />
-			<Collapse line="162" />
-			<Collapse line="172" />
-			<Collapse line="198" />
-			<Collapse line="208" />
-			<Collapse line="231" />
-			<Collapse line="254" />
-			<Collapse line="293" />
-			<Collapse line="303" />
-			<Collapse line="316" />
+			<Collapse line="194" />
+			<Collapse line="203" />
+			<Collapse line="205" />
+			<Collapse line="215" />
+			<Collapse line="241" />
+			<Collapse line="251" />
+			<Collapse line="274" />
+			<Collapse line="297" />
+			<Collapse line="336" />
+			<Collapse line="346" />
+			<Collapse line="359" />
+			<Collapse line="382" />
+			<Collapse line="408" />
+			<Collapse line="487" />
+			<Collapse line="497" />
+			<Collapse line="517" />
+			<Collapse line="528" />
 		</Folding>
 	</File>
-	<File name="func.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="IELTS" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="136" topLine="0" />
+			<Cursor1 position="161" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="TOEIC" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="TOEIC" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="579" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="IELTS" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="func.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="161" topLine="0" />
+			<Cursor1 position="256" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

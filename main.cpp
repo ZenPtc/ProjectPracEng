@@ -14,6 +14,19 @@ int main()
     bool CHW = false; //check have word?
     int highscore=0,score=0;
 
+    //set music
+    Music gameMusic,ingameMusic,loseMusic;
+    if(!gameMusic.openFromFile("main song.ogg"))
+        std::cout << " " << std::endl;
+    if(!ingameMusic.openFromFile("in game song.ogg"))
+        std::cout << " " << std::endl;
+    if(!loseMusic.openFromFile("game over song.ogg"))
+        std::cout << " " << std::endl;
+    gameMusic.play();
+    gameMusic.setVolume(10);
+    ingameMusic.setVolume(7);
+    loseMusic.setVolume(10);
+
     while (window.isOpen())
     {
         srand(time(0));
@@ -189,7 +202,7 @@ int main()
         textSscore.setColor(Color::White);
         textNext.setOrigin(textNext.getGlobalBounds().width /2,textNext.getGlobalBounds().height /2);
         textSscore.setPosition(422.5,35);
-        ////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////
         if(screen==0){ //main screen
             //Press word
             if((float)mousePos.x<A.posx+(A.Lx/2) && (float)mousePos.x>A.posx-(A.Lx/2)){
@@ -219,6 +232,7 @@ int main()
                         if(Mouse::isButtonPressed(Mouse::Left)){
                             screen = 3;
                             sleep_for(150ms);
+                            ingameMusic.play();
                         }
                     }
                 }
@@ -377,6 +391,8 @@ int main()
             window.draw(textL);
             window.display();
         }else if(screen==3){ //play screen
+            gameMusic.stop();
+            loseMusic.stop();
 
             while(ranNUM2==ranNUM1) ranNUM2 = rand()%(count);
 
@@ -413,6 +429,7 @@ int main()
                         score=0;
                         screen = 0;
                         sleep_for(150ms);
+                        ingameMusic.stop();
                     }
                 }
             }
@@ -426,6 +443,7 @@ int main()
                         }else{
                             screen=5;
                             sleep_for(150ms);
+                            loseMusic.play();
                         }
                         ranChoice = rand()%2;
                         ranNUM1 = rand()%(count);
@@ -445,6 +463,7 @@ int main()
                         }else{
                             screen=5;
                             sleep_for(150ms);
+                            loseMusic.play();
                         }
                         ranChoice = rand()%2;
                         ranNUM1 = rand()%(count);
@@ -513,7 +532,9 @@ int main()
             window.draw(textL);
             window.draw(textDes);
             window.display();
-        }else if(screen==5){  //game over screen
+        }else if(screen==5){  //game over screen.
+            gameMusic.stop();
+            ingameMusic.stop();
             //Press back
             if((float)mousePos.x<Back.posx+(Back.Lx/2) && (float)mousePos.x>Back.posx-(Back.Lx/2)){
                 if((float)mousePos.y<Back.posy+(Back.Ly/2) && (float)mousePos.y>Back.posy-(Back.Ly/2)){
@@ -521,6 +542,7 @@ int main()
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 0;
                         sleep_for(150ms);
+                        loseMusic.stop();
                         score=0;
                     }
                 }
@@ -532,7 +554,9 @@ int main()
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 3;
                         sleep_for(150ms);
+                        loseMusic.stop();
                         score=0;
+                        ingameMusic.play();
                     }
                 }
             }
@@ -564,6 +588,11 @@ int main()
             window.draw(textYS);
             window.draw(textCheer);
             window.display();
+        }
+        if(gameMusic.getStatus()==Sound::Status::Stopped&&
+           ingameMusic.getStatus()==Sound::Status::Stopped&&
+           loseMusic.getStatus()==Sound::Status::Stopped){
+            gameMusic.play();
         }
     }
 
