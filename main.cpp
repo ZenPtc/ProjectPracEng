@@ -10,9 +10,11 @@ int main()
     vector<string> word;
     vector<string> des;
     int count=0; //count word
-    int ranNUM1=0,ranNUM2=1,ranChoice=0; //set stater for random
+    int ranNUM1=0,ranNUM2=1,ranChoice=0,ranTar=0; //set stater for random
     bool CHW = false; //check have word?
     int highscore=0,score=0;
+    int xTar=window.getSize().x/2;
+    int Ptime=350;
 
     //set music
     Music gameMusic,ingameMusic,loseMusic;
@@ -41,14 +43,11 @@ int main()
         Vector2i mousePos = Mouse::getPosition(window);
         //create button
         RectangleShape btonA,btonB,btonC,btonBack,btonT,btonF,btonChoice1,btonChoice2,
-                        btonIELTS,btonTOEIC,btonTOELF,btonNext,
-                        nameRect,tuRect,moneyRect,tar1Rect,tar2Rect,tar3Rect;
+                        btonIELTS,btonTOEIC,btonTOELF,btonNext,btonTime,
+                        nameRect,tuRect,moneyRect,tarRect;
         Bton Name(nameRect,302.5,163.5,window.getSize().x/2,165);
-        Bton Tu(tuRect,255,199,150,377.5);
-        Bton Money(moneyRect,93,84.375,367.5,65);
-        Bton Tar1(tar1Rect,92,80,237,166);
-        Bton Tar2(tar2Rect,79,80,368.5,246);
-        Bton Tar3(tar3Rect,98,80,414,394);
+        Bton Tu(tuRect,255,199,window.getSize().x/2,400);
+        Bton Money(moneyRect,93,84.375,367.5,50);
         Bton A(btonA,350,70,window.getSize().x/2,Name.posy+170);
         Bton B(btonB,350,70,window.getSize().x/2,A.posy+125);
         Bton C(btonC,350,70,window.getSize().x/2,B.posy+125);
@@ -61,20 +60,28 @@ int main()
         Bton TOEIC(btonTOEIC,350,70,window.getSize().x/2,IELTS.posy+150);
         Bton TOELF(btonTOELF,350,70,window.getSize().x/2,TOEIC.posy+150);
         Bton Next(btonNext,100,40,420,650);
+        btonTime.setSize(Vector2f(Ptime,20));
+        btonTime.setPosition(115,657);
+
+        ranTar = rand()%3;
+        if(ranTar==0){
+            xTar = window.getSize().x/2;
+        }else if(ranTar==1){
+            xTar = window.getSize().x/2-130;
+        }else if(ranTar==2){
+            xTar = window.getSize().x/2+130;
+        }
+        Bton Target(tarRect,92,80,xTar,185);
         ///////////////set texture///////////////
-        Texture nameTexture,tuTexture,moneyTexture,tar1Texture,tar2Texture,tar3Texture;
+        Texture nameTexture,tuTexture,moneyTexture,tarTexture;
         nameTexture.loadFromFile("program name.png");
         tuTexture.loadFromFile("tu.png");
         moneyTexture.loadFromFile("money.png");
-        tar1Texture.loadFromFile("target1.png");
-        tar2Texture.loadFromFile("target2.png");
-        tar3Texture.loadFromFile("target1.png");
+        tarTexture.loadFromFile("target1.png");
         Name.rectan.setTexture(&nameTexture);
         Tu.rectan.setTexture(&tuTexture);
         Money.rectan.setTexture(&moneyTexture);
-        Tar1.rectan.setTexture(&tar1Texture);
-        Tar2.rectan.setTexture(&tar2Texture);
-        Tar3.rectan.setTexture(&tar3Texture);
+        Target.rectan.setTexture(&tarTexture);
         /////////////////////////////////////set text////////////////////////////////////////////////
         Font font,font2,font3;
         if (!font.loadFromFile("C://windows/fonts/coopbl.ttf"))
@@ -85,7 +92,7 @@ int main()
             throw("CLOUD NOT LOAD FONT!");
         Text textA,textB,textC,textBack,textT,textF,textIELTS,textTOEIC,textTOELF,
                 textL,textNext,textDes,textC1,textC2,textLOSE,textHS,textYS,textCheer,
-                textSscore;
+                textSscore,textTime;
         //cheer up!
         textCheer.setFont(font3);
         textCheer.setCharacterSize(25);
@@ -200,8 +207,15 @@ int main()
         textSscore.setFont(font2);
         textSscore.setCharacterSize(60);
         textSscore.setColor(Color::White);
-        textNext.setOrigin(textNext.getGlobalBounds().width /2,textNext.getGlobalBounds().height /2);
-        textSscore.setPosition(422.5,35);
+        textSscore.setOrigin(textSscore.getGlobalBounds().width /2,textSscore.getGlobalBounds().height /2);
+        textSscore.setPosition(422.5,10);
+        //text time
+        textTime.setFont(font);
+        textTime.setCharacterSize(20);
+        textTime.setColor(Color::White);
+        textTime.setString("TIME :");
+        textTime.setOrigin(textTime.getGlobalBounds().width/2,textTime.getGlobalBounds().height/2);
+        textTime.setPosition(70,660);
         //////////////////////////////////////////////////////////////////////////////////////////////
         if(screen==0){ //main screen
             //Press word
@@ -393,6 +407,8 @@ int main()
         }else if(screen==3){ //play screen
             gameMusic.stop();
             loseMusic.stop();
+            Ptime-=2; //time-2
+            if(Ptime==0) screen=5;
 
             while(ranNUM2==ranNUM1) ranNUM2 = rand()%(count);
 
@@ -428,6 +444,7 @@ int main()
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         score=0;
                         screen = 0;
+                        Ptime=350;
                         sleep_for(150ms);
                         ingameMusic.stop();
                     }
@@ -440,6 +457,7 @@ int main()
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         if(ranChoice==0){
                             score++;
+                            Ptime=350;
                         }else{
                             screen=5;
                             sleep_for(150ms);
@@ -460,6 +478,7 @@ int main()
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         if(ranChoice==1){
                             score++;
+                            Ptime=350;
                         }else{
                             screen=5;
                             sleep_for(150ms);
@@ -481,16 +500,16 @@ int main()
             window.draw(Back.rectan);
             window.draw(Tu.rectan);
             window.draw(Money.rectan);
-            window.draw(Tar1.rectan);
-            window.draw(Tar2.rectan);
-            window.draw(Tar3.rectan);
+            window.draw(Target.rectan);
             window.draw(Choice1.rectan);
             window.draw(Choice2.rectan);
+            window.draw(btonTime);
             window.draw(textSscore);
             window.draw(textDes);
             window.draw(textBack);
             window.draw(textC1);
             window.draw(textC2);
+            window.draw(textTime);
             window.display();
         }else if(screen==4){  //don't know word screen
             //word
@@ -535,6 +554,7 @@ int main()
         }else if(screen==5){  //game over screen.
             gameMusic.stop();
             ingameMusic.stop();
+            Ptime=350;
             //Press back
             if((float)mousePos.x<Back.posx+(Back.Lx/2) && (float)mousePos.x>Back.posx-(Back.Lx/2)){
                 if((float)mousePos.y<Back.posy+(Back.Ly/2) && (float)mousePos.y>Back.posy-(Back.Ly/2)){
@@ -589,6 +609,7 @@ int main()
             window.draw(textCheer);
             window.display();
         }
+        //play background sound
         if(gameMusic.getStatus()==Sound::Status::Stopped&&
            ingameMusic.getStatus()==Sound::Status::Stopped&&
            loseMusic.getStatus()==Sound::Status::Stopped){

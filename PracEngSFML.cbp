@@ -54,6 +54,9 @@
 		<Unit filename="TOELF" />
 		<Unit filename="func.cpp" />
 		<Unit filename="func.h" />
+		<Unit filename="game over song.ogg" />
+		<Unit filename="in game song.ogg" />
+		<Unit filename="main song.ogg" />
 		<Unit filename="main.cpp" />
 		<Unit filename="money.png" />
 		<Unit filename="program name.png" />
