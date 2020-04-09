@@ -10,10 +10,11 @@ int main()
     vector<string> word;
     vector<string> des;
     int count=0; //count word
-    int ranNUM1=0,ranNUM2=1,ranChoice=0,ranTar=0; //set stater for random
+    int ranNUM1=0,ranNUM2=1,ranChoice=0,ranTar=0,ranPaw=2; //set stater for random
     bool CHW = false; //check have word?
     int highscore=0,score=0;
-    int xTar=window.getSize().x/2;
+    int xTar=window.getSize().x/2, yTar=150;
+    int xPaw=window.getSize().x/2, yPaw=250;
     int Ptime=350;
 
     //set music
@@ -44,7 +45,7 @@ int main()
         //create button
         RectangleShape btonA,btonB,btonC,btonBack,btonT,btonF,btonChoice1,btonChoice2,
                         btonIELTS,btonTOEIC,btonTOELF,btonNext,btonTime,
-                        nameRect,tuRect,moneyRect,tarRect;
+                        nameRect,tuRect,moneyRect,tarRect,pawRect;
         Bton Name(nameRect,302.5,163.5,window.getSize().x/2,165);
         Bton Tu(tuRect,255,199,window.getSize().x/2,400);
         Bton Money(moneyRect,93,84.375,367.5,50);
@@ -63,15 +64,30 @@ int main()
         btonTime.setSize(Vector2f(Ptime,20));
         btonTime.setPosition(115,657);
 
-        ranTar = rand()%3;
+        ranTar = (rand()%10+rand()%5)%3;
         if(ranTar==0){
             xTar = window.getSize().x/2;
+            yTar = 150;
         }else if(ranTar==1){
             xTar = window.getSize().x/2-130;
+            yTar = 170;
         }else if(ranTar==2){
             xTar = window.getSize().x/2+130;
+            yTar = 170;
         }
-        Bton Target(tarRect,92,80,xTar,185);
+        ranPaw = (rand()%8+rand()%3)%3;
+        if(ranPaw==0){
+            xPaw = window.getSize().x/2;
+            yPaw = 250;
+        }else if(ranPaw==1){
+            xPaw = window.getSize().x/2-130;
+            yPaw = 270;
+        }else if(ranPaw==2){
+            xPaw = window.getSize().x/2+130;
+            yPaw = 270;
+        }
+        Bton Target(tarRect,92,80,xTar,yTar);
+        Bton Paw(pawRect,92,80,xPaw,yPaw);
         ///////////////set texture///////////////
         Texture nameTexture,tuTexture,moneyTexture,tarTexture;
         nameTexture.loadFromFile("program name.png");
@@ -408,7 +424,11 @@ int main()
             gameMusic.stop();
             loseMusic.stop();
             Ptime-=2; //time-2
-            if(Ptime==0) screen=5;
+            if(Ptime<=0){
+                screen=5;
+                sleep_for(150ms);
+                loseMusic.play();
+            }
 
             while(ranNUM2==ranNUM1) ranNUM2 = rand()%(count);
 
@@ -456,17 +476,19 @@ int main()
                     Choice1.rectan.setFillColor(Color::Yellow);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         if(ranChoice==0){
-                            score++;
-                            Ptime=350;
+                            if(ranTar==ranPaw){
+                                score++;
+                                Ptime=350;
+                                ranChoice = rand()%2;
+                                ranNUM1 = rand()%(count);
+                                ranNUM2 = rand()%(count);
+                                while(ranNUM2==ranNUM1) ranNUM2 = rand()%(count);
+                            }else Ptime-=30;
                         }else{
                             screen=5;
                             sleep_for(150ms);
                             loseMusic.play();
                         }
-                        ranChoice = rand()%2;
-                        ranNUM1 = rand()%(count);
-                        ranNUM2 = rand()%(count);
-                        while(ranNUM2==ranNUM1) ranNUM2 = rand()%(count);
                         sleep_for(150ms);
                     }
                 }
@@ -477,17 +499,19 @@ int main()
                     Choice2.rectan.setFillColor(Color::Yellow);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         if(ranChoice==1){
-                            score++;
-                            Ptime=350;
+                            if(ranTar==ranPaw){
+                                score++;
+                                Ptime=350;
+                                ranChoice = rand()%2;
+                                ranNUM1 = rand()%(count);
+                                ranNUM2 = rand()%(count);
+                                while(ranNUM2==ranNUM1) ranNUM2 = rand()%(count);
+                            }else Ptime-=30;
                         }else{
                             screen=5;
                             sleep_for(150ms);
                             loseMusic.play();
                         }
-                        ranChoice = rand()%2;
-                        ranNUM1 = rand()%(count);
-                        ranNUM2 = rand()%(count);
-                        while(ranNUM2==ranNUM1) ranNUM2 = rand()%(count);
                         sleep_for(150ms);
                     }
                 }
@@ -501,6 +525,7 @@ int main()
             window.draw(Tu.rectan);
             window.draw(Money.rectan);
             window.draw(Target.rectan);
+            window.draw(Paw.rectan);
             window.draw(Choice1.rectan);
             window.draw(Choice2.rectan);
             window.draw(btonTime);
