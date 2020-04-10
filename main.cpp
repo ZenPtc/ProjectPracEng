@@ -47,8 +47,8 @@ int main()
                         btonIELTS,btonTOEIC,btonTOELF,btonNext,btonTime,
                         nameRect,catRect,moneyRect,tarRect,pawRect;
         Bton Name(nameRect,302.5,163.5,window.getSize().x/2,165);
-        Bton Cat(catRect,114,197,window.getSize().x/2,400);
-        Bton Money(moneyRect,78,77.375,367.5,50);
+        Bton Money(moneyRect,77,75,367.5,50);
+        Bton Cat(catRect,225,245,window.getSize().x/2,400);
         Bton A(btonA,350,70,window.getSize().x/2,Name.posy+170);
         Bton B(btonB,350,70,window.getSize().x/2,A.posy+125);
         Bton C(btonC,350,70,window.getSize().x/2,B.posy+125);
@@ -75,23 +75,27 @@ int main()
             xTar = window.getSize().x/2+130;
             yTar = 170;
         }
+        //cat
+        Texture catTexture;
         ranPaw = (rand()%8+rand()%3)%3;
         if(ranPaw==0){
             xPaw = window.getSize().x/2;
             yPaw = 250;
+            catTexture.loadFromFile("catMid.png");
         }else if(ranPaw==1){
             xPaw = window.getSize().x/2-130;
             yPaw = 270;
+            catTexture.loadFromFile("catLeft.png");
         }else if(ranPaw==2){
             xPaw = window.getSize().x/2+130;
             yPaw = 270;
+            catTexture.loadFromFile("catRight.png");
         }
         Bton Target(tarRect,93,61,xTar,yTar);
         Bton Paw(pawRect,43,41,xPaw,yPaw);
         ///////////////set texture///////////////
-        Texture nameTexture,catTexture,moneyTexture,tarTexture,pawTexture;
+        Texture nameTexture,moneyTexture,tarTexture,pawTexture;
         nameTexture.loadFromFile("program name.png");
-        catTexture.loadFromFile("cat.png");
         moneyTexture.loadFromFile("score.png");
         tarTexture.loadFromFile("fish.png");
         pawTexture.loadFromFile("paw.png");

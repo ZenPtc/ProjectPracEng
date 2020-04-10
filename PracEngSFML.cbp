@@ -52,14 +52,17 @@
 		<Unit filename="IELTS" />
 		<Unit filename="TOEIC" />
 		<Unit filename="TOELF" />
+		<Unit filename="cat.png" />
+		<Unit filename="fish.png" />
 		<Unit filename="func.cpp" />
 		<Unit filename="func.h" />
 		<Unit filename="game over song.ogg" />
 		<Unit filename="in game song.ogg" />
 		<Unit filename="main song.ogg" />
 		<Unit filename="main.cpp" />
-		<Unit filename="money.png" />
+		<Unit filename="paw.png" />
 		<Unit filename="program name.png" />
+		<Unit filename="score.png" />
 		<Unit filename="sfml-audio-2.dll" />
 		<Unit filename="sfml-audio-d-2.dll" />
 		<Unit filename="sfml-graphics-2.dll" />
@@ -70,9 +73,6 @@
 		<Unit filename="sfml-system-d-2.dll" />
 		<Unit filename="sfml-window-2.dll" />
 		<Unit filename="sfml-window-d-2.dll" />
-		<Unit filename="target1.png" />
-		<Unit filename="target2.png" />
-		<Unit filename="tu.png" />
 		<Extensions>
 			<code_completion />
 			<envvars />
