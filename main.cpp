@@ -45,10 +45,10 @@ int main()
         //create button
         RectangleShape btonA,btonB,btonC,btonBack,btonT,btonF,btonChoice1,btonChoice2,
                         btonIELTS,btonTOEIC,btonTOELF,btonNext,btonTime,
-                        nameRect,tuRect,moneyRect,tarRect,pawRect;
+                        nameRect,catRect,moneyRect,tarRect,pawRect;
         Bton Name(nameRect,302.5,163.5,window.getSize().x/2,165);
-        Bton Tu(tuRect,255,199,window.getSize().x/2,400);
-        Bton Money(moneyRect,93,84.375,367.5,50);
+        Bton Cat(catRect,114,197,window.getSize().x/2,400);
+        Bton Money(moneyRect,78,77.375,367.5,50);
         Bton A(btonA,350,70,window.getSize().x/2,Name.posy+170);
         Bton B(btonB,350,70,window.getSize().x/2,A.posy+125);
         Bton C(btonC,350,70,window.getSize().x/2,B.posy+125);
@@ -86,18 +86,20 @@ int main()
             xPaw = window.getSize().x/2+130;
             yPaw = 270;
         }
-        Bton Target(tarRect,92,80,xTar,yTar);
-        Bton Paw(pawRect,92,80,xPaw,yPaw);
+        Bton Target(tarRect,93,61,xTar,yTar);
+        Bton Paw(pawRect,43,41,xPaw,yPaw);
         ///////////////set texture///////////////
-        Texture nameTexture,tuTexture,moneyTexture,tarTexture;
+        Texture nameTexture,catTexture,moneyTexture,tarTexture,pawTexture;
         nameTexture.loadFromFile("program name.png");
-        tuTexture.loadFromFile("tu.png");
-        moneyTexture.loadFromFile("money.png");
-        tarTexture.loadFromFile("target1.png");
+        catTexture.loadFromFile("cat.png");
+        moneyTexture.loadFromFile("score.png");
+        tarTexture.loadFromFile("fish.png");
+        pawTexture.loadFromFile("paw.png");
         Name.rectan.setTexture(&nameTexture);
-        Tu.rectan.setTexture(&tuTexture);
+        Cat.rectan.setTexture(&catTexture);
         Money.rectan.setTexture(&moneyTexture);
         Target.rectan.setTexture(&tarTexture);
+        Paw.rectan.setTexture(&pawTexture);
         /////////////////////////////////////set text////////////////////////////////////////////////
         Font font,font2,font3;
         if (!font.loadFromFile("C://windows/fonts/coopbl.ttf"))
@@ -522,7 +524,7 @@ int main()
 
             window.clear();
             window.draw(Back.rectan);
-            window.draw(Tu.rectan);
+            window.draw(Cat.rectan);
             window.draw(Money.rectan);
             window.draw(Target.rectan);
             window.draw(Paw.rectan);
