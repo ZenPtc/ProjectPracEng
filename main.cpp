@@ -3,7 +3,7 @@
 int main()
 {
     //set render window
-    RenderWindow window(VideoMode(500,700), "English Easy",Style::Close);
+    RenderWindow window(VideoMode(500,700), "EngJoy",Style::Close);
     int screen = 0; //start at main screen
 
     //variable for collect word and describe
@@ -17,6 +17,23 @@ int main()
     int xPaw=window.getSize().x/2, yPaw=250;
     int Ptime=350;
 
+    //set background
+    Texture bg1Texture,bg2Texture,bg3Texture,bg4Texture,bg5Texture;
+    if (!bg1Texture.loadFromFile("topic.png"))
+        cout << "cannot load background" << endl;
+    if (!bg2Texture.loadFromFile("3choices.png"))
+        cout << "cannot load background" << endl;
+    if (!bg3Texture.loadFromFile("vocab.png"))
+        cout << "cannot load background" << endl;
+    if (!bg4Texture.loadFromFile("game.png"))
+        cout << "cannot load background" << endl;
+    if (!bg5Texture.loadFromFile("end.png"))
+        cout << "cannot load background" << endl;
+    Sprite background1(bg1Texture),
+            background2(bg2Texture),
+            background3(bg3Texture),
+            background4(bg4Texture),
+            background5(bg5Texture);
     //set music
     Music gameMusic,ingameMusic,loseMusic;
     if(!gameMusic.openFromFile("main song.ogg"))
@@ -29,6 +46,11 @@ int main()
     gameMusic.setVolume(10);
     ingameMusic.setVolume(7);
     loseMusic.setVolume(10);
+    //set color
+    sf::Color Brown(138,56,15);
+    sf::Color Gray(118,109,105);
+    sf::Color lightBlue(112,216,245);
+    sf::Color Pink(255,150,86);
 
     while (window.isOpen())
     {
@@ -47,7 +69,7 @@ int main()
                         btonIELTS,btonTOEIC,btonTOELF,btonNext,btonTime,
                         nameRect,catRect,moneyRect,tarRect,pawRect;
         Bton Name(nameRect,302.5,163.5,window.getSize().x/2,165);
-        Bton Money(moneyRect,77,75,367.5,50);
+        Bton Money(moneyRect,77,76,367.5,50);
         Bton Cat(catRect,225,245,window.getSize().x/2,400);
         Bton A(btonA,350,70,window.getSize().x/2,Name.posy+170);
         Bton B(btonB,350,70,window.getSize().x/2,A.posy+125);
@@ -62,6 +84,7 @@ int main()
         Bton TOELF(btonTOELF,350,70,window.getSize().x/2,TOEIC.posy+150);
         Bton Next(btonNext,100,40,420,650);
         btonTime.setSize(Vector2f(Ptime,20));
+        btonTime.setFillColor(Brown);
         btonTime.setPosition(115,657);
 
         ranTar = (rand()%10+rand()%5)%3;
@@ -91,8 +114,8 @@ int main()
             yPaw = 270;
             catTexture.loadFromFile("catRight.png");
         }
-        Bton Target(tarRect,93,61,xTar,yTar);
-        Bton Paw(pawRect,43,41,xPaw,yPaw);
+        Bton Target(tarRect,99,68,xTar,yTar);
+        Bton Paw(pawRect,49,46,xPaw,yPaw);
         ///////////////set texture///////////////
         Texture nameTexture,moneyTexture,tarTexture,pawTexture;
         nameTexture.loadFromFile("program name.png");
@@ -118,27 +141,27 @@ int main()
         //cheer up!
         textCheer.setFont(font3);
         textCheer.setCharacterSize(25);
-        textCheer.setColor(Color::White);
+        textCheer.setColor(Color::Black);
         textCheer.setString("May the force be with you.");
         textCheer.setOrigin(textCheer.getGlobalBounds().width /2,textCheer.getGlobalBounds().height /2);
-        textCheer.setPosition(window.getSize().x/2,window.getSize().y/3+280);
+        textCheer.setPosition(window.getSize().x/2,window.getSize().y/3+250);
         //your score
         textYS.setFont(font3);
         textYS.setCharacterSize(25);
         textYS.setStyle(Text::Bold);
-        textYS.setColor(Color::White);
+        textYS.setColor(Color::Black);
         //high score
         textHS.setFont(font3);
         textHS.setCharacterSize(25);
         textHS.setStyle(Text::Bold);
-        textHS.setColor(Color::White);
+        textHS.setColor(Color::Black);
         //game over
         textLOSE.setFont(font);
         textLOSE.setCharacterSize(50);
-        textLOSE.setColor(Color::White);
+        textLOSE.setColor(Color::Black);
         textLOSE.setString("GAME OVER");
         textLOSE.setOrigin(textLOSE.getGlobalBounds().width /2,textLOSE.getGlobalBounds().height /2);
-        textLOSE.setPosition(window.getSize().x/2,window.getSize().y/4);
+        textLOSE.setPosition(window.getSize().x/2,window.getSize().y/4+30);
         //Choice1
         textC1.setFont(font);
         textC1.setCharacterSize(20);
@@ -213,7 +236,7 @@ int main()
         //learn word
         textL.setFont(font);
         textL.setCharacterSize(50);
-        textL.setColor(Color::White);
+        textL.setColor(Color::Black);
         //Next
         textNext.setFont(font);
         textNext.setCharacterSize(20);
@@ -224,17 +247,17 @@ int main()
         //text describe
         textDes.setFont(font2);
         textDes.setCharacterSize(20);
-        textDes.setColor(Color::White);
+        textDes.setColor(Color::Black);
         //show score
         textSscore.setFont(font2);
         textSscore.setCharacterSize(60);
-        textSscore.setColor(Color::White);
+        textSscore.setColor(Color::Black);
         textSscore.setOrigin(textSscore.getGlobalBounds().width /2,textSscore.getGlobalBounds().height /2);
         textSscore.setPosition(422.5,10);
         //text time
         textTime.setFont(font);
         textTime.setCharacterSize(20);
-        textTime.setColor(Color::White);
+        textTime.setColor(Color::Black);
         textTime.setString("TIME :");
         textTime.setOrigin(textTime.getGlobalBounds().width/2,textTime.getGlobalBounds().height/2);
         textTime.setPosition(70,660);
@@ -243,7 +266,7 @@ int main()
             //Press word
             if((float)mousePos.x<A.posx+(A.Lx/2) && (float)mousePos.x>A.posx-(A.Lx/2)){
                 if((float)mousePos.y<A.posy+(A.Ly/2) && (float)mousePos.y>A.posy-(A.Ly/2)){
-                    A.rectan.setFillColor(Color::Cyan);
+                    A.rectan.setFillColor(lightBlue);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 1;
                         sleep_for(150ms);
@@ -254,7 +277,7 @@ int main()
                 //Press learn
                 if((float)mousePos.x<B.posx+(B.Lx/2) && (float)mousePos.x>B.posx-(B.Lx/2)){
                     if((float)mousePos.y<B.posy+(B.Ly/2) && (float)mousePos.y>B.posy-(B.Ly/2)){
-                        B.rectan.setFillColor(Color::Cyan);
+                        B.rectan.setFillColor(lightBlue);
                         if(Mouse::isButtonPressed(Mouse::Left)){
                             screen = 2;
                             sleep_for(150ms);
@@ -264,7 +287,7 @@ int main()
                 //Press play
                 if((float)mousePos.x<C.posx+(C.Lx/2) && (float)mousePos.x>C.posx-(C.Lx/2)){
                     if((float)mousePos.y<C.posy+(C.Ly/2) && (float)mousePos.y>C.posy-(C.Ly/2)){
-                        C.rectan.setFillColor(Color::Cyan);
+                        C.rectan.setFillColor(lightBlue);
                         if(Mouse::isButtonPressed(Mouse::Left)){
                             screen = 3;
                             sleep_for(150ms);
@@ -273,12 +296,12 @@ int main()
                     }
                 }
             }else{
-                sf::Color Gray(100,100,100);
                 B.rectan.setFillColor(Gray);
                 C.rectan.setFillColor(Gray);
             }
 
             window.clear();
+            window.draw(background1);
             window.draw(Name.rectan);
             window.draw(A.rectan);
             window.draw(B.rectan);
@@ -291,7 +314,7 @@ int main()
             //Press back
             if((float)mousePos.x<Back.posx+(Back.Lx/2) && (float)mousePos.x>Back.posx-(Back.Lx/2)){
                 if((float)mousePos.y<Back.posy+(Back.Ly/2) && (float)mousePos.y>Back.posy-(Back.Ly/2)){
-                    Back.rectan.setFillColor(Color::Cyan);
+                    Back.rectan.setFillColor(lightBlue);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 0;
                         sleep_for(150ms);
@@ -301,7 +324,7 @@ int main()
             //IELTS
             if((float)mousePos.x<IELTS.posx+(IELTS.Lx/2) && (float)mousePos.x>IELTS.posx-(IELTS.Lx/2)){
                 if((float)mousePos.y<IELTS.posy+(IELTS.Ly/2) && (float)mousePos.y>IELTS.posy-(IELTS.Ly/2)){
-                    IELTS.rectan.setFillColor(Color::Yellow);
+                    IELTS.rectan.setFillColor(Pink);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         CHW = true;
                         system("cls"); //clear screen
@@ -324,7 +347,7 @@ int main()
             //TOEIC
             if((float)mousePos.x<TOEIC.posx+(TOEIC.Lx/2) && (float)mousePos.x>TOEIC.posx-(TOEIC.Lx/2)){
                 if((float)mousePos.y<TOEIC.posy+(TOEIC.Ly/2) && (float)mousePos.y>TOEIC.posy-(TOEIC.Ly/2)){
-                    TOEIC.rectan.setFillColor(Color::Yellow);
+                    TOEIC.rectan.setFillColor(Pink);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         CHW = true;
                         system("cls"); //clear screen
@@ -347,7 +370,7 @@ int main()
             //TOELF
             if((float)mousePos.x<TOELF.posx+(TOELF.Lx/2) && (float)mousePos.x>TOELF.posx-(TOELF.Lx/2)){
                 if((float)mousePos.y<TOELF.posy+(TOELF.Ly/2) && (float)mousePos.y>TOELF.posy-(TOELF.Ly/2)){
-                    TOELF.rectan.setFillColor(Color::Yellow);
+                    TOELF.rectan.setFillColor(Pink);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         CHW = true;
                         system("cls"); //clear screen
@@ -369,6 +392,7 @@ int main()
             }
 
             window.clear();
+            window.draw(background2);
             window.draw(Back.rectan);
             window.draw(textBack);
             window.draw(IELTS.rectan);
@@ -386,7 +410,7 @@ int main()
             //Press back
             if((float)mousePos.x<Back.posx+(Back.Lx/2) && (float)mousePos.x>Back.posx-(Back.Lx/2)){
                 if((float)mousePos.y<Back.posy+(Back.Ly/2) && (float)mousePos.y>Back.posy-(Back.Ly/2)){
-                    Back.rectan.setFillColor(Color::Cyan);
+                    Back.rectan.setFillColor(lightBlue);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 0;
                         sleep_for(150ms);
@@ -418,6 +442,7 @@ int main()
             }
 
             window.clear();
+            window.draw(background3);
             window.draw(Back.rectan);
             window.draw(T.rectan);
             window.draw(F.rectan);
@@ -466,7 +491,7 @@ int main()
             //Press back
             if((float)mousePos.x<Back.posx+(Back.Lx/2) && (float)mousePos.x>Back.posx-(Back.Lx/2)){
                 if((float)mousePos.y<Back.posy+(Back.Ly/2) && (float)mousePos.y>Back.posy-(Back.Ly/2)){
-                    Back.rectan.setFillColor(Color::Cyan);
+                    Back.rectan.setFillColor(lightBlue);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         score=0;
                         screen = 0;
@@ -527,6 +552,7 @@ int main()
             textSscore.setString(Sscore);
 
             window.clear();
+            window.draw(background4);
             window.draw(Back.rectan);
             window.draw(Cat.rectan);
             window.draw(Money.rectan);
@@ -556,7 +582,7 @@ int main()
             //Press back
             if((float)mousePos.x<Back.posx+(Back.Lx/2) && (float)mousePos.x>Back.posx-(Back.Lx/2)){
                 if((float)mousePos.y<Back.posy+(Back.Ly/2) && (float)mousePos.y>Back.posy-(Back.Ly/2)){
-                    Back.rectan.setFillColor(Color::Cyan);
+                    Back.rectan.setFillColor(lightBlue);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 0;
                         sleep_for(150ms);
@@ -566,7 +592,7 @@ int main()
             //Press next
             if((float)mousePos.x<Next.posx+(Next.Lx/2) && (float)mousePos.x>Next.posx-(Next.Lx/2)){
                 if((float)mousePos.y<Next.posy+(Next.Ly/2) && (float)mousePos.y>Next.posy-(Next.Ly/2)){
-                    Next.rectan.setFillColor(Color::Cyan);
+                    Next.rectan.setFillColor(lightBlue);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 2;
                         sleep_for(150ms);
@@ -575,6 +601,7 @@ int main()
             }
 
             window.clear();
+            window.draw(background3);
             window.draw(Back.rectan);
             window.draw(textBack);
             window.draw(Next.rectan);
@@ -589,7 +616,7 @@ int main()
             //Press back
             if((float)mousePos.x<Back.posx+(Back.Lx/2) && (float)mousePos.x>Back.posx-(Back.Lx/2)){
                 if((float)mousePos.y<Back.posy+(Back.Ly/2) && (float)mousePos.y>Back.posy-(Back.Ly/2)){
-                    Back.rectan.setFillColor(Color::Cyan);
+                    Back.rectan.setFillColor(lightBlue);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 0;
                         sleep_for(150ms);
@@ -601,7 +628,7 @@ int main()
             //Press next
             if((float)mousePos.x<Next.posx+(Next.Lx/2) && (float)mousePos.x>Next.posx-(Next.Lx/2)){
                 if((float)mousePos.y<Next.posy+(Next.Ly/2) && (float)mousePos.y>Next.posy-(Next.Ly/2)){
-                    Next.rectan.setFillColor(Color::Cyan);
+                    Next.rectan.setFillColor(lightBlue);
                     if(Mouse::isButtonPressed(Mouse::Left)){
                         screen = 3;
                         sleep_for(150ms);
@@ -630,6 +657,7 @@ int main()
             textYS.setPosition(window.getSize().x/2,window.getSize().y/2+42);
 
             window.clear();
+            window.draw(background5);
             window.draw(Back.rectan);
             window.draw(textBack);
             window.draw(Next.rectan);

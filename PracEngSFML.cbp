@@ -49,14 +49,19 @@
 		<Linker>
 			<Add directory="C:/Users/Tang/Desktop/ComPro/library/SFML-2.5.1/lib" />
 		</Linker>
+		<Unit filename="3choices.png" />
 		<Unit filename="IELTS" />
 		<Unit filename="TOEIC" />
 		<Unit filename="TOELF" />
-		<Unit filename="cat.png" />
+		<Unit filename="catLeft.png" />
+		<Unit filename="catMid.png" />
+		<Unit filename="catRight.png" />
+		<Unit filename="end.png" />
 		<Unit filename="fish.png" />
 		<Unit filename="func.cpp" />
 		<Unit filename="func.h" />
 		<Unit filename="game over song.ogg" />
+		<Unit filename="game.png" />
 		<Unit filename="in game song.ogg" />
 		<Unit filename="main song.ogg" />
 		<Unit filename="main.cpp" />
@@ -73,6 +78,8 @@
 		<Unit filename="sfml-system-d-2.dll" />
 		<Unit filename="sfml-window-2.dll" />
 		<Unit filename="sfml-window-d-2.dll" />
+		<Unit filename="topic.png" />
+		<Unit filename="vocab.png" />
 		<Extensions>
 			<code_completion />
 			<envvars />
