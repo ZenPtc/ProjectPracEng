@@ -7,7 +7,7 @@ using namespace sf;
 
 int main()
 {
-    RenderWindow window(VideoMode(500, 700), "COOL GAME",Style::Close);
+    RenderWindow window(VideoMode(500, 700), "ENGJOY",Style::Close);
     RectangleShape name(Vector2f(304.0f,163.5f));
     name.setOrigin(name.getSize().x/2,name.getSize().y/2);
     name.setPosition(window.getSize().x/2,window.getSize().y/2);
