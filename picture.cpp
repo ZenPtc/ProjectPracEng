@@ -48,10 +48,10 @@ int main()
     moneyTexture.loadFromFile("score.png");
     tarTexture.loadFromFile("fish.png");
     pawTexture.loadFromFile("paw.png");
-    Cat.setTexture(&catTexture);
-    Money.setTexture(&moneyTexture);
-    Target.setTexture(&tarTexture);
-    Paw.setTexture(&pawTexture);
+    catRect.setTexture(&catTexture);
+    moneyRect.setTexture(&moneyTexture);
+    tarRect.setTexture(&tarTexture);
+    pawRect.setTexture(&pawTexture);
 
     while(window.isOpen())
     {
