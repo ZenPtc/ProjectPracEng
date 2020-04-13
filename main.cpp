@@ -23,33 +23,33 @@ int main()
     text1.setCharacterSize(20);
     text1.setColor(Color::Red);
     text1.setStyle(Text::Bold);
-    text1.setString("O");
+    text1.setString("IELTS");
     text1.setOrigin(text1.getGlobalBounds().width /2,text1.getGlobalBounds().height /2);
-    text1.setPosition(window.getSize().x /4,T.posy-10);
+    text1.setPosition(window.getSize().x/2,IELTS.posy-5);
 
     text2.setFont(font);
     text2.setCharacterSize(20);
     text2.setColor(Color::Red);
     text2.setStyle(Text::Bold);
-    text2.setString("X");
+    text2.setString("TOEIC");
     text2.setOrigin(text2.getGlobalBounds().width /2,text2.getGlobalBounds().height /2);
-    text2.setPosition(window.getSize().x/2+window.getSize().x/4,F.posy-10);
+    text2.setPosition(window.getSize().x/2,TOEIC.posy-5);
 
     text3.setFont(font);
     text3.setCharacterSize(20);
     text3.setColor(Color::Red);
     text3.setStyle(Text::Bold);
-    text3.setString("Vocab");
+    text3.setString("TOELF");
     text3.setOrigin(text3.getGlobalBounds().width /2,text3.getGlobalBounds().height /2);
+    text3.setPosition(window.getSize().x/2,TOELF.posy-5);
 
     text4.setFont(font);
     text4.setCharacterSize(20);
     text4.setColor(Color::Red);
     text4.setStyle(Text::Bold);
     text4.setString("BACK");
-    text4.setOrigin(text3.getGlobalBounds().width /2,text3.getGlobalBounds().height /2);
+    text4.setOrigin(text4.getGlobalBounds().width /2,text4.getGlobalBounds().height /2);
     text4.setPosition(80, 50);
-
 
 
 
