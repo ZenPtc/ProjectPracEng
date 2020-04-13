@@ -21,9 +21,8 @@ int main()
 
 
     
-    RectangleShape btonA,btonB,btonC,btonBack,btonT,btonF,btonChoice1,btonChoice2,
-                    btonIELTS,btonTOEIC,btonTOELF,btonNext,btonTime,
-                    nameRect,catRect,moneyRect,tarRect,pawRect;
+    RectangleShape catRect,moneyRect,tarRect,pawRect;
+                   
 
   //Money(moneyRect,77,75,367.5,50);
     moneyRect.setSize(Vector2f(77,75));
@@ -42,14 +41,13 @@ int main()
     pawRect.setOrigin(49/2,46/2);
     pawRect.setPosition(window.getSize().x/2,250);
     
-    Texture nameTexture,moneyTexture,tarTexture,pawTexture;
+    Texture moneyTexture,tarTexture,pawTexture;
     
     
     
     moneyTexture.loadFromFile("score.png");
     tarTexture.loadFromFile("fish.png");
     pawTexture.loadFromFile("paw.png");
-    name.setTexture(&nameTexture);
     Cat.setTexture(&catTexture);
     Money.setTexture(&moneyTexture);
     Target.setTexture(&tarTexture);
