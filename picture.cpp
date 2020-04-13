@@ -65,10 +65,10 @@ int main()
         }
 
         window.clear();
-        window.draw(Money);
-        window.draw(Target);
-        window.draw(Paw);
-        window.draw(Cat);
+        window.draw(moneyRect);
+        window.draw(tarRect);
+        window.draw(pawRect);
+        window.draw(catRect);
         window.display();
 
     }
