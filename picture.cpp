@@ -8,9 +8,7 @@ using namespace sf;
 int main()
 {
     RenderWindow window(VideoMode(500, 700), "ENGJOY",Style::Close);
-    RectangleShape name(Vector2f(304.0f,163.5f));
-    name.setOrigin(name.getSize().x/2,name.getSize().y/2);
-    name.setPosition(window.getSize().x/2,window.getSize().y/2);
+   
    
     
     
@@ -45,10 +43,9 @@ int main()
     pawRect.setPosition(window.getSize().x/2,250);
     
     Texture nameTexture,moneyTexture,tarTexture,pawTexture;
-    nameTexture.loadFromFile("program name.png");
-    name.setTexture(&nameTexture);
     
-    nameTexture.loadFromFile("program name.png");
+    
+    
     moneyTexture.loadFromFile("score.png");
     tarTexture.loadFromFile("fish.png");
     pawTexture.loadFromFile("paw.png");
@@ -70,7 +67,10 @@ int main()
         }
 
         window.clear();
-        window.draw(name);
+        window.draw(Money);
+        window.draw(Target);
+        window.draw(Paw);
+        window.draw(Cat);
         window.display();
 
     }
