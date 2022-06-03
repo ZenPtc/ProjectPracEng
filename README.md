@@ -1,7 +1,7 @@
 # ProjectPracEng
 Demo: https://youtu.be/b25YxmmsLRI \
 Part of Computer Programming 261102 - 2nd semester Final Project\
-Chaingmai university - CPE
+Chiangmai university - CPE
 
 #### This project is a program to help people memorize english words which have 3 part
  * choose category of words you want to practice
